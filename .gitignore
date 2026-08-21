@@ -8,3 +8,4 @@ __pycache__/
 target/
 *.pdf
 !newton-over-hodge-char2.pdf
+replication/.axeyum-pin/

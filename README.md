@@ -40,9 +40,14 @@ literature found en route, and states its open items exactly.
 **Status, stated honestly.** The main theorem and its two lemmas were proved
 by one set of agents and independently re-derived by an adversarial auditing
 agent, and the core local computations are backed by self-checking programs
-(see `replication/`). Parts of the supporting material remain
-`PENDING-AUDIT`, and the paper says which. None of this is a substitute for
-human review, and it is not offered as one.
+(see `replication/`). The computations were performed with
+[**Axeyum**](https://github.com/mjbommar/axeyum), a Rust-first automated
+reasoning stack, pinned at commit
+[`75663ef8`](https://github.com/mjbommar/axeyum/tree/75663ef85c2dad4390a3b6d77361919a914642a9)
+of branch `agent/noh-p2-axeyum-examples`, and independently cross-checked by a
+from-scratch reimplementation that shares no code with it. Parts of the
+supporting material remain `PENDING-AUDIT`, and the paper says which. None of
+this is a substitute for human review, and it is not offered as one.
 
 ## Repo map
 
@@ -50,7 +55,7 @@ human review, and it is not offered as one.
 |-------|------|
 | `paper.yaml` | Single source of truth: title, authors, abstract, keywords, MSC 2020, arXiv categories, engine, license, disclosures |
 | `latex/` | The paper source (`main.tex`, `sections/`, `preamble/`, `bib/`) |
-| `replication/` | Standalone verifier and the self-checking programs; `run.sh` is the entry point |
+| `replication/` | Two-layer replication: **Axeyum at a pinned commit** computes, an independent from-scratch implementation cross-checks; `run.sh` is the entry point |
 | `research-log/` | The complete, frozen audit trail: charter, five proving workstreams, coordinator notes, the adversarial audit (`20-verify.md`), and the write-up (`30-writeup.md`) |
 | `proofs/` | Stub for the planned Lean formalization of Lemma A / Theorem 3 |
 | `scripts/` | Build gates, toolchain doctor, arXiv packaging (`uv run`, zero install) |
@@ -74,14 +79,57 @@ convenient, and `make doctor` reports what is missing.
 ## Run the replication
 
 ```bash
-make verify      # delegates to replication/run.sh
+make verify                            # delegates to replication/run.sh
+replication/run.sh                     # both layers, quick scope    (~32 s cold, ~13 s warm)
+replication/run.sh --full --mutants    # the scope claimed in the write-up (~3.5 min)
+replication/run.sh --axeyum-only       # layer 1 alone
+replication/run.sh --crosscheck-only   # layer 2 alone
 ```
 
-Every checking program asserts its findings and **exits nonzero when a check
-fails**, so its exit status depends on what the run found rather than on the
-run completing. Until `replication/run.sh` lands, `make verify` skips loudly
-and states that it checked nothing -- it never reports a green it did not
-earn.
+The package has **two layers, and the order is the point.**
+
+**Layer 1, primary: [Axeyum](https://github.com/mjbommar/axeyum).** The
+mathematics in this paper was computed by Axeyum, a Rust-first automated
+reasoning stack (typed term IR, rewriting, SAT/SMT backends, a Lean-compatible
+proof kernel, and the proof-carrying computer-algebra layer `axeyum-cas` used
+here). Its identity in one sentence is *untrusted fast search, trusted small
+checking*. `run.sh` obtains the stack at the pinned commit
+
+```
+repo    https://github.com/mjbommar/axeyum
+branch  agent/noh-p2-axeyum-examples
+commit  75663ef85c2dad4390a3b6d77361919a914642a9
+```
+
+-- from `AXEYUM_DIR`, from a sibling `../axeyum` checkout that contains that
+commit, or by a shallow clone into `replication/.axeyum-pin/` (gitignored),
+whose `HEAD` must equal the pin or the run fails -- and then runs the two
+self-checking examples
+
+```bash
+cargo run --release -p axeyum-cas --example noh_u2_matrix       # the exact U_2 operator,
+                                                                # Dwork-trace anchored
+cargo run --release -p axeyum-cas --example noh_wt_certificate  # Theorems 1-4, Lemma A
+```
+
+Before running them it verifies by SHA-256 that the copies shipped under
+`replication/axeyum-examples/` are byte-identical to that commit, so "these are
+the axeyum examples" is a checked finding rather than a sentence in a README.
+
+**Layer 2, independent cross-check.** A from-scratch reimplementation in
+`python3`/`sympy` and plain `rustc` that **shares no code with Axeyum**,
+written from the definitions by a different workstream. It exists to disagree
+with layer 1 if layer 1 is wrong, and it reaches beyond it: the LP feasibility
+route, the orbit-sum weight, the Lubin-Tate invariance sweep, the Witt-level
+controls and all of Lemma B are checked only there. Conversely the Dwork
+trace-formula anchor lives only in layer 1. Neither layer subsumes the other; a
+green run requires both.
+
+Every checking program in both layers asserts its findings and **exits nonzero
+when a check fails**, so `run.sh`'s exit status depends on what the runs found
+rather than on their completing; it exits 2 if nothing ran at all. Full detail,
+including the claim-to-program table and the mutation controls, is in
+[`replication/README.md`](replication/README.md).
 
 ## The audit trail
 

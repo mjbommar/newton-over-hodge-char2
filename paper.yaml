@@ -94,4 +94,4 @@ disclosure:
     scripts accompany this paper in the repository https://github.com/mjbommar/newton-over-hodge-char2
     under replication/, together with the full research log. Each program asserts its findings and exits
     nonzero on any failure, so its exit status depends on what the run found rather than on the run
-    completing. No external solver or computer-algebra system is required.'
+    completing. The primary replication path runs the Axeyum reasoning stack at a pinned public commit; the independent cross-check layer requires no external solver or computer-algebra system.'

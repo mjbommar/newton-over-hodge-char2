@@ -226,10 +226,31 @@ review, and it refuted or downgraded several intermediate claims, including
 one range statement that had already propagated into a dependent draft. Every
 theorem stated here was re-derived independently of the draft that first
 proposed it, and every computational assertion is backed by at least two
-implementations sharing no code, in exact rational arithmetic. The
-replication package carries these programs --- each asserts its findings and
-exits nonzero on failure --- together with the complete research log and an
-error ledger recording what the project got wrong before it got it right.
+implementations sharing no code, in exact rational arithmetic.
+
+The computational substrate is \textsc{Axeyum}~\cite{axeyum2026}, an
+open-source Rust automated-reasoning stack whose stated discipline ---
+untrusted fast search, trusted small checking --- is the one this section
+describes. Every computation reported below was performed in its
+proof-carrying computer-algebra layer as a self-checking program, at a public
+pinned commit.\footnote{\url{https://github.com/mjbommar/axeyum}, branch
+\texttt{agent/noh-p2-axeyum-examples}, commit
+\texttt{75663ef85c2dad4390a3b6d77361919a914642a9}. The two programs this
+paper depends on are \texttt{crates/axeyum-cas/examples/noh\_u2\_matrix.rs}
+--- the type-$2$ operator computed exactly and anchored to the Dwork trace
+formula against point counts over $\F_{2^k}$ --- and
+\texttt{noh\_wt\_certificate.rs}, the certificate for
+\Cref{thm:closed-form,thm:valuation,thm:weight,thm:sharpness} and
+\Cref{lem:tail}. Both assert their own findings and exit nonzero on failure;
+the replication package verifies by \textsc{sha}-$256$ that the copies it
+ships are byte-identical to that commit before running them.} The second
+implementation of each computation is deliberately \emph{not} built on that
+stack: it is a from-scratch reimplementation in a different language, sharing
+no line of code, whose purpose is to disagree if the first is wrong. The
+replication package runs both layers in that order --- each asserting its
+findings and exiting nonzero on failure --- together with the complete
+research log and an error ledger recording what the project got wrong before
+it got it right.
 
 \emph{The proofs in this paper have not yet been read by a human referee.}
 We state that once, here, rather than qualifying each theorem: the

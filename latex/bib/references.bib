@@ -881,3 +881,23 @@
 % paper. A Subrao entry drafted here carried a volume, page range and DOI
 % that could not be checked against any source available to this workstream,
 % so it was removed rather than shipped.
+
+% ---------------------------------------------------------------------------
+% The computational substrate. Every computation in this paper was performed
+% in axeyum's proof-carrying computer-algebra layer (crates/axeyum-cas), as
+% self-checking examples; the two the paper depends on are noh_u2_matrix.rs
+% and noh_wt_certificate.rs. The COMMIT is the citation: branch heads move,
+% and a replication package that cannot name the exact tree it ran is not a
+% replication package. plainnat has no software entry type -- and note that
+% BibTeX does NOT treat `%` as a comment character: an at-sign anywhere in
+% this block, even here, starts an entry and derails the parse (it did, once).
+% So: a misc entry, repository in howpublished, pin in note.
+@misc{axeyum2026,
+  author       = {Bommarito, Michael J.},
+  title        = {Axeyum: a {R}ust-first automated reasoning stack},
+  year         = {2026},
+  howpublished = {Software repository; branch
+                  \texttt{agent/noh-p2-axeyum-examples}, commit
+                  \texttt{75663ef85c2dad4390a3b6d77361919a914642a9}},
+  note         = {\url{https://github.com/mjbommar/axeyum}}
+}

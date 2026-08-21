@@ -60,7 +60,31 @@ extension.
 
 Every computational claim in this paper is backed by a program in the
 replication package, listed in the data-availability statement below. Each
-asserts its findings and exits nonzero on any failure. The package also
+asserts its findings and exits nonzero on any failure. The package runs in
+two layers and the order is load-bearing. The primary layer is
+\textsc{Axeyum}~\cite{axeyum2026}, pinned at
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+  repository & \url{https://github.com/mjbommar/axeyum}\\
+  branch     & \texttt{agent/noh-p2-axeyum-examples}\\
+  commit     & \texttt{75663ef85c2dad4390a3b6d77361919a914642a9}
+\end{tabular}
+\end{center}
+
+\noindent
+where it runs the two self-checking examples
+\texttt{crates/axeyum-cas/} \texttt{examples/noh\_u2\_matrix.rs} and
+\texttt{noh\_wt\_certificate.rs}, after verifying by \textsc{sha}-$256$ that
+the copies shipped with this paper are byte-identical to that commit. The
+second layer is an independent from-scratch reimplementation that shares no
+code with the first, and it covers ground the first does not --- the
+linear-programming route to $\RateGamma$, the orbit-sum weight, the
+Lubin--Tate invariance sweep, the Witt-level controls and the whole of
+\Cref{lem:belyi} --- just as the first covers the Dwork trace-formula anchor
+and the diagonal lattice certificate, which the second does not. Neither
+subsumes the other; a green run requires both. The package also
 carries the research log: the source extractions, the adversarial audit that
 refuted or downgraded several intermediate claims, and an error ledger. A
 reader who wants to attack this paper will find the highest-yield targets
