@@ -6,3 +6,5 @@ build/
 refs/tarballs/
 __pycache__/
 target/
+*.pdf
+!newton-over-hodge-char2.pdf
