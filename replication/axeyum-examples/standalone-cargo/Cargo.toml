@@ -1,0 +1,31 @@
+# Standalone build of the two axeyum examples, for replication without axeyum.
+#
+# Both files in ../ are byte-identical to the axeyum-cas examples they were
+# written as; neither uses anything from axeyum, so a three-crate manifest is
+# enough.  `noh_wt_certificate` needs nothing at all and is normally built with
+# plain rustc by ../../certificate/run-certificate.sh; it is listed here only so
+# that `cargo run --bin` reaches both.
+#
+#   cargo run --release --bin noh_u2_matrix        # ~1 s, self-checking
+#   cargo run --release --bin noh_wt_certificate   # ~1 s, self-checking
+#
+# num-bigint / num-rational / num-traits are pure Rust: no C or C++ toolchain.
+
+[package]
+name = "noh-examples"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[[bin]]
+name = "noh_u2_matrix"
+path = "../noh_u2_matrix.rs"
+
+[[bin]]
+name = "noh_wt_certificate"
+path = "../noh_wt_certificate.rs"
+
+[dependencies]
+num-bigint = "0.4"
+num-rational = { version = "0.4", default-features = false, features = ["num-bigint"] }
+num-traits = "0.2"

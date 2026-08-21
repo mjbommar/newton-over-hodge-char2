@@ -1,0 +1,8 @@
+build/
+*.aux
+*.log
+*.out
+*.synctex.gz
+refs/tarballs/
+__pycache__/
+target/

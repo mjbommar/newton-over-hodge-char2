@@ -1,0 +1,50 @@
+%% ============================================================
+%% preamble/colors.tex — MONOCHROME token set
+%%
+%% Purpose      : this paper prints in black. A mathematics preprint has
+%%                no coloured headings, no coloured defined terms, no
+%%                coloured rules, and no coloured links; colour in the
+%%                body is a whitepaper/marketing signal and it was the
+%%                single loudest thing making this PDF read as one.
+%%
+%%                The token NAMES survive so the template's components
+%%                keep a stable vocabulary (and a future venue that wants
+%%                colour can rebind them in one file), but every token
+%%                resolves to black or to a neutral gray used only for
+%%                non-semantic furniture. Nothing in the shipped PDF
+%%                actually prints in a hue.
+%%
+%% Dependencies : xcolor (packages.tex). Sections NEVER name colors, and
+%%                scripts/check_style.py fails the build if one tries.
+%%
+%% \GrayscaleMode is consequently a no-op: the default build is already
+%% B&W-safe. The build target is retained so the Makefile contract holds.
+%% ============================================================
+
+% ----------------------------------------------------------------------
+% Primitives — grays only. No accent ramp, by design.
+% ----------------------------------------------------------------------
+\definecolor{gray-300}{HTML}{D4D4D4}
+\definecolor{gray-500}{HTML}{737373}
+\definecolor{gray-950}{HTML}{0A0A0A}
+
+% ----------------------------------------------------------------------
+% Semantic tokens — all black except the one hairline gray.
+% ----------------------------------------------------------------------
+\colorlet{text-primary}{black}
+\colorlet{text-muted}{black}
+\colorlet{primary}{black}
+\colorlet{link}{black}
+\colorlet{url}{black}
+\colorlet{cite}{black}
+\colorlet{rule}{gray-300}
+\colorlet{highlight}{black}
+\colorlet{draft-mark}{gray-500}   % DRAFT banner only; never in the paper
+
+% ----------------------------------------------------------------------
+% Component bindings — kept for vocabulary stability; all black.
+% ----------------------------------------------------------------------
+\colorlet{pt-title}{black}
+\colorlet{pt-section}{black}
+\colorlet{pt-caption}{black}
+\colorlet{pt-draft}{draft-mark}

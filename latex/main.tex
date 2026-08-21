@@ -1,0 +1,75 @@
+%% ============================================================
+%% main.tex — single entry point for EVERY build variant.
+%%
+%% One file, all outputs: the Makefile injects build-mode flags via
+%% latexmk's -usepretex (e.g. -usepretex='\def\DraftMode{1}') with a
+%% distinct -jobname per variant, building out-of-tree into build/:
+%%
+%%   cd latex && latexmk -pdf -interaction=nonstopmode \
+%%     -output-directory=../build/latex main.tex
+%%
+%% All \input paths below are relative to latex/ (the build cwd).
+%%
+%% Build modes (set by the Makefile via -usepretex; read inside preamble
+%% modules and the title block, never in sections):
+%%   \DraftMode        line numbers + "DRAFT" banner   (make draft)
+%%   \AnonMode         strip author identity + PDF metadata (make anon)
+%%   \GrayscaleMode    accent ramp -> gray, B&W-safe    (make grayscale)
+%% ============================================================
+
+% Metadata FIRST — before \documentclass, because \PaperBaseSize and the
+% \ifPaper... flags feed the class options.
+%
+% This repository has NO metadata generator: ../paper.yaml is the canonical
+% TEXT of the title, abstract, keywords, classification and disclosures, and
+% preamble/metadata.tex is a hand-maintained mirror of it. paper.yaml wins on
+% any disagreement — it says so itself. Consequence: `latexmk -pdf main.tex`
+% compiles latex/ on its own, with no generation step, which is what
+% latex/localbuild.sh does and what the Makefile's `pdf` target relies on.
+% The generated/ branch below is left in place so that adding a generator
+% later needs no edit to main.tex.
+\IfFileExists{generated/metadata.tex}{%
+  \input{generated/metadata}%
+}{%
+  \input{preamble/metadata}%
+}
+
+% CLASS: amsart — the AMS article class, the house class of a mathematics
+% preprint. It supplies the front matter this genre expects
+% (\subjclass[2020], \keywords, \address/\email in the back matter), the
+% AMS sectioning and theorem conventions, and the running heads readers of
+% arXiv mathematics are used to.
+\ifPaperTwoColumn
+  \documentclass[\PaperBaseSize,\PaperPaperOption,twocolumn]{amsart}
+\else
+  \documentclass[\PaperBaseSize,\PaperPaperOption]{amsart}
+\fi
+
+\input{preamble/main}
+
+\begin{document}
+
+% Title block (title, authors, affiliations, date; abstract; keyword/
+% MSC apparatus). Reads only metadata macros + build-mode flags.
+\input{frontmatter/titleblock}
+
+% ---------------- Body ------------------------------------------------
+% Sections are plain \input; add or reorder here. Numbered NN_ prefix is
+% the house convention.
+\input{sections/01_introduction}
+\input{sections/02_local}
+\input{sections/03_sharpness}
+\input{sections/04_tame_map}
+\input{sections/05_assembly}
+\input{sections/06_remarks}
+
+% ---------------- Back matter -----------------------------------------
+% Data availability + funding/COI/AI-use statements.
+\input{backmatter/disclosures}
+
+% ---------------- Bibliography ----------------------------------------
+% Renders via the citation system selected in paper.yaml (packages.tex):
+% natbib -> \bibliography; biblatex -> \printbibliography.
+\PrintBibliography
+
+\end{document}

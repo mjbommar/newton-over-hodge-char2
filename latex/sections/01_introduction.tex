@@ -1,0 +1,258 @@
+%% ============================================================
+%% sections/01_introduction.tex
+%%
+%% The landscape, the obstruction quoted in the authors' own words, the
+%% main theorem, the architecture of its proof, and the provenance
+%% paragraph. Target: three pages.
+%% ============================================================
+
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{The landscape}
+\label{sec:landscape}
+
+Let $p$ be a prime, $q$ a power of $p$, and $X/\Fq$ a smooth affine curve
+with smooth compactification $\Xbar$ of genus $g$ and $\Sinf = \Xbar
+\setminus X$. For a nontrivial finite character $\rho$ of $\pi_1(X)$, the
+$L$-function $L(\rho,s)$ is a polynomial, and the Newton-over-Hodge problem
+asks for a lower bound on its $q$-adic Newton polygon $\NP_q(\rho)$ in terms
+of the ramification of $\rho$ alone.
+
+Over the projective line and its affinoids the problem is closed at every
+prime, $p = 2$ included. Zhu's theorem on one-dimensional
+affinoids~\cite{zhu2004newton} is sharp for any prime coprime to the pole
+orders; Liu and Wan's $T$-adic bound~\cite[Theorem~5.2]{liuwan2009tadic}
+carries no hypothesis on $p$ whatsoever, and neither does Schmidt's
+affinoid version~\cite{schmidt2023tadic}; the Davis--Wan--Xiao
+tower~\cite{daviswanxiao2016newton} needs only $\gcd(d,p) = 1$. Nothing
+below is a claim about $\PP^1$. Behind these sit the Newton-polygon theory
+of exponential sums of Adolphson and Sperber~\cite{adolphsonsperber1989exponential,adolphsonsperber1993twisted}
+and Wan~\cite{wan1993newton,wan2004variation}, and the stratification
+results of Blache and F\'erard~\cite{blacheferard2007newton}; the $T$-adic
+line continues in~\cite{haessig2026}.
+
+Over an \emph{arbitrary} smooth affine curve the situation is different,
+and the difference is the point of this paper. The framework that produces
+a \emph{ramification-defined} Hodge bound there --- one built from the Swan
+conductors of $\rho$ and nothing else --- is Kramer-Miller's and
+Kramer-Miller--Upton's. It comprises~\cite{kramermiller2021padic} for exponential sums,
+\cite{kramermiller2020abelian} for abelian Artin $L$-functions, and~\cite{kramermillerupton2021newton,kramermillerupton2021variation} for the local-to-global
+contact theory and its variation in families. Every one of these papers
+assumes $p$ odd. The hypothesis is printed in the first section of each:
+\emph{``Let $p$ be a prime with $p \ge 3$''}~\cite{kramermiller2020abelian}, \emph{``Let $p$ be an odd prime and let $q$
+be a power of $p$''}~\cite{kramermillerupton2021newton}.
+
+The exclusion is neither an oversight nor an unattempted case. The authors
+name its two components.
+
+\subsection{The obstruction, in the authors' words}
+\label{sec:obstruction}
+
+The first component is analytic. At a point $P$ where the auxiliary Belyi
+map $\eta$ takes the value $1$, the relevant Frobenius is not a $p$-power
+map, and the Dwork operator $\Up$ moves poles around in a way that has to
+be controlled by a weight on a growth module. Kramer-Miller and Upton
+carried out the $p = 2$ computation and recorded the outcome in their
+Remark~6.5, which we quote in full because it is the statement this paper
+repairs.
+
+\begin{quotation}
+\noindent
+Suppose that $p = 2$. For $k \ge 3$, define $\wt(k) = \lfloor (k-1)/3
+\rfloor$. A similar construction provides a submodule $\Am \subset
+A^{\dagger}_{\pi,P}$ with the following property: Let $k = 2\ell - r$ with
+$r = 0$ or $1$. Then
+\[
+  \Up\bigl(\pi^{\wt(k)/m_P} t_P^{-k}\bigr) \in
+  \pi^{(\wt(k) - \wt(\ell + r))/m_P}\, \Am .
+\]
+\emph{This estimate is too low for applications to the global setting.} For
+example, if $k = 5 = 2\cdot 3 - 1$, then $\wt(k) - \wt(\ell+r) = 0$, and
+this contributes an extra segment of slope $0$ in the global Hodge bound
+below.
+\hfill~\cite[Remark~6.5]{kramermillerupton2021newton}
+\end{quotation}
+
+The estimate is not merely weak: it breaks a \emph{count}. The
+Deuring--Shafarevich argument that supplies the slope-$0$ part of the
+polygon pins the number of slope-$0$ segments exactly, and a single index
+with zero gain inserts one more. That is why the remark says ``too low for
+applications'' rather than ``weaker than we would like''.
+
+The second component is geometric, and was stated two years earlier:
+
+\begin{quotation}
+\noindent
+Finally, we mention our requirement that $p \ge 3$. When $p = 2$ it is
+likely that the methods in this paper still work. The main difficulty is
+that some estimates in section~4 must be modified. It is also not
+immediately clear that we can find a cover $\eta : X \to \PP^1_{\Fq}$
+satisfying the desired properties. To construct $\eta$, we use the fact
+that $X$ admits a simply branched map to $\PP^1_{\Fq}$, which is false when
+$p = 2$.
+\hfill~\cite[\S1.4]{kramermiller2021padic}
+\end{quotation}
+
+The construction that fails is a composition ending in the $(p-1)$-power
+map $z \mapsto z^{p-1}$, whose job is to create a fibre of uniform
+ramification index $p-1$ over the point $1$. At $p = 2$ that map is the
+identity, and the whole stage evaporates.
+
+The gap is live rather than historical. Booher, Groen and
+Kramer-Miller~\cite{boohergroenkramermiller2025} treat $\Z/2$-covers in
+characteristic two through their Ekedahl--Oort types rather than the full
+$2$-adic Newton polygon, which is the move one makes when the $2$-adic
+polygon is out of reach.
+
+\subsection{The result}
+\label{sec:result}
+
+The obstruction of Remark~6.5 is not analytic. The number $3$ in $\lfloor
+(k-1)/3 \rfloor$ is the tame ramification index of the auxiliary map, and
+the estimate is repaired by a different weight on the same module ---
+Kramer-Miller--Upton's own weight plus a parity indicator,
+\[
+  \wt(k) = \Bigl\lfloor \frac{k-1}{3} \Bigr\rfloor + (k \bmod 2),
+\]
+which we prove admissible for every $k$, with defect $\dfct(k) \ge 1$ and
+$\dfct(k) \sim k/6$, that rate being exactly optimal
+(\S\ref{sec:local}--\S\ref{sec:sharpness}). Together with a
+characteristic-$2$ tame Belyi map of uniform index $3$ over the point $1$
+(\S\ref{sec:tame-map}), this yields the following.
+
+\begin{theorem}[Main theorem]
+\label{thm:main}
+Let $q = 2^a$, let $X/\Fq$ be a smooth affine curve with smooth
+compactification $\Xbar$ of genus $g$ and $\Sinf = \Xbar \setminus X$, and
+let $\rho$ be a nontrivial finite character of $\pi_1(X)$ of any $2$-power
+order $2^n$. Then
+\[
+  \NP_q(\rho) \ \succeq \ \HP_q(\rho)
+\]
+as full polygons: with the ramification-defined Hodge polygon of
+\textup{\cite[\S1.2]{kramermillerupton2021newton}}, no truncation, and no
+restriction on $n$.
+\end{theorem}
+
+Here $\HP_q(\rho)$ is the Kramer-Miller ramification-defined Hodge polygon,
+the polygon with slope multiset
+\begin{equation}
+\label{eq:hodge-slopes}
+  \{0\}^{\,g-1+|\Sinf|} \ \cup\ \{1\}^{\,g-1+|\Sinf|} \ \cup\
+  \bigcup_{P \in \Sinf}
+  \Bigl\{ \tfrac{1}{\dP},\ \tfrac{2}{\dP},\ \dots,\ \tfrac{\dP-1}{\dP} \Bigr\},
+\end{equation}
+where $\dP$ is the Swan conductor of $\rho$ at $P$ and $|\Sinf|$ is counted
+geometrically; $\succeq$ is the relation ``lies on or above'', as in the
+sources. \Cref{thm:main} is the exact characteristic-$2$ analogue of~\cite[Theorem~1.1]{kramermiller2020abelian} for characters of $p$-power
+order, with the same polygon and the same generality of base.
+
+The local-to-global \emph{contact} criterion of~\cite[Theorem~1.1]{kramermillerupton2021newton} --- the two polygons touch globally
+if and only if they touch locally at every wild point --- also goes
+through, but only on an initial segment.
+
+\begin{theorem}[Contact, on an initial segment]
+\label{thm:contact}
+Assume $X$ ordinary and let $\rho$ have order $2^n$. For every $q$-adic $r$
+with $0 \le r \le 2^{1-n}$, the polygons $\HP_q^{<r}(\rho)$ and
+$\NP_q^{<r}(\rho)$ have the same terminal point if and only if
+$\HP_q^{<r}(\rhoP)$ and $\NP_q^{<r}(\rhoP)$ have the same terminal point
+for every $P \in \Sinf$. In particular the full range $r \in [0,1]$ of
+\textup{\cite[Theorem~1.1]{kramermillerupton2021newton}} is covered at order $2$.
+\end{theorem}
+
+The restriction in \Cref{thm:contact} is not an artifact of our route. We
+prove in \S\ref{sec:sharpness} that the index $k = 2e$ is a self-loop of the
+type-$2$ operator with transition coefficient exactly $\SelfLoopCoeff$, for
+\emph{every} odd tame index $e$ and independently of $e$; so $\dfct(2e) \le
+1$ for every weight whatsoever, and no choice of auxiliary index relieves
+the cap. \Cref{thm:contact} rests in addition on an exactness statement that~\cite{kramermillerupton2021newton} asserts without proof, at every $p$ and for its own
+weight; \Cref{thm:main} does not (\S\ref{sec:assembly}).
+
+\subsection{Architecture of the proof}
+\label{sec:architecture}
+
+The global machinery is entirely Kramer-Miller's. What this paper supplies
+is the pair of ingredients their own papers name as missing, and the
+verification that nothing else in the argument sees the prime.
+
+\begin{enumerate}[label=(\arabic*),leftmargin=*,itemsep=2pt]
+\item \textbf{The type-$2$ operator, solved (\S\ref{sec:local}).} Writing
+  $\Utwo(t^{-k}) = \sum_j c_{k,j}t^{-j}$ at odd tame index $e$, the support
+  is a single arithmetic progression $\jm(k) + e\Z_{\ge 0}$ and the
+  coefficients along it are the Taylor coefficients of $\cosh(\lambda
+  \arcsinh z)$ and $\sinh(\lambda\arcsinh z)/z$ with $\lambda = k/e$
+  (\Cref{thm:closed-form}); the proof is a change of variable turning the
+  defining trace identity into one second-order ODE\@.
+\item \textbf{Their valuations, exactly.} Legendre's formula converts the
+  closed form into an exact expression for $\vtwo(c_{k,j})$
+  (\Cref{thm:valuation}), whence a four-case parity argument gives the tail
+  estimate $\vtwo \ge m$, tight only at $k \equiv 2 \bmod 4$, $m = 1$
+  (\Cref{lem:tail}).
+\item \textbf{The repaired weight.} That tightness and the failure of
+  $\lfloor (k-1)/3 \rfloor$ occur at the same indices and in opposite
+  directions, which is why a parity indicator --- and nothing more --- fixes
+  the estimate (\Cref{thm:weight}).
+\item \textbf{Sharpness (\S\ref{sec:sharpness}).} One coefficient,
+  $c_{2e,2e} = \SelfLoopCoeff$, caps every weight at rate $\RateGeneral$;
+  at $e = 3$ that is $\RateGamma$, which the repaired weight attains.
+\item \textbf{The geometric input (\S\ref{sec:tame-map}).} Replacing the
+  $(p-1)$-power stage by an $e$-power stage, and Fulton's simply-branched
+  map by the tame map of Kedlaya--Litt--Witaszek and Sugiyama--Yasuda,
+  produces the required Belyi map at $p = 2$ (\Cref{lem:belyi}).
+\item \textbf{Assembly (\S\ref{sec:assembly}).} The two ingredients go into
+  \cite{kramermiller2020abelian}, whose remaining hypotheses are
+  $p$-uniform; the weight transports through a dictionary between the two
+  papers' growth modules that holds on the nose.
+\end{enumerate}
+
+En route we record four corrections to the sources, none of which is a $p =
+2$ obstruction and none of which invalidates a published theorem: a
+paraphrase in~\cite{kramermillerupton2021newton} that over-states the freedom in
+choosing a linear map (\S\ref{sec:c-correction}), a strict inequality in~\cite[Definition~6.3]{kramermillerupton2021newton} inconsistent with its own claim,
+and two statements in~\cite[\S4.1]{kramermiller2020abelian} that are false
+as printed and true in a repaired form (\S\ref{sec:defects}). All four are
+$p$-uniform.
+
+\subsection{Provenance, machine verification, and what is not claimed}
+\label{sec:provenance}
+
+This paper was produced by a multi-agent artificial-intelligence workflow
+under human direction. Separate agents extracted and quoted the sources,
+attacked the problem, adversarially audited the results, and drafted the
+exposition; the audit was run as a hostile re-derivation rather than a
+review, and it refuted or downgraded several intermediate claims, including
+one range statement that had already propagated into a dependent draft. Every
+theorem stated here was re-derived independently of the draft that first
+proposed it, and every computational assertion is backed by at least two
+implementations sharing no code, in exact rational arithmetic. The
+replication package carries these programs --- each asserts its findings and
+exits nonzero on failure --- together with the complete research log and an
+error ledger recording what the project got wrong before it got it right.
+
+\emph{The proofs in this paper have not yet been read by a human referee.}
+We state that once, here, rather than qualifying each theorem: the
+distinction that matters to a reader is not which statement carries which
+internal label, but that the whole has had machine verification and
+adversarial re-derivation and has not had peer review. Every quotation from
+a source was transcribed from the published or arXiv text by at least two
+independent readers; the passage in \S\ref{sec:obstruction} was transcribed
+five times.
+
+We claim nothing for Newton over Hodge at $p = 2$ over $\PP^1$ or over
+affinoids, which is published (\S\ref{sec:landscape}). We do not re-verify
+Deuring--Shafarevich, Katz--Gabber, Monsky's trace formula, the functional
+analysis of~\cite[\S6]{kramermiller2020abelian}, or the internal proofs of~\cite{kedlayalittwitaszek2020tame} and~\cite{sugiyamayasuda2020belyi}; these
+are cited as their users cite them. Section~\ref{sec:remarks} states what
+remains open.
+
+\subsection{Organisation}
+
+\Cref{sec:local} solves the type-$2$ operator and proves the repaired weight
+admissible. \Cref{sec:sharpness} shows the rate is exactly $\RateGamma$ and
+draws the consequence for the contact theory. \Cref{sec:tame-map}
+constructs the characteristic-$2$ Belyi map and settles the arithmetic
+condition it needs. \Cref{sec:assembly} assembles \Cref{thm:main} and
+records the source defects met on the way. \Cref{sec:remarks} states the
+open problems.

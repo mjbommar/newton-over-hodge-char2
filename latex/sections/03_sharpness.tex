@@ -1,0 +1,123 @@
+%% ============================================================
+%% sections/03_sharpness.tex
+%%
+%% gamma = 1/6 exactly; the k = 2e self-loop and its universality in e;
+%% and the consequence for the contact theory, stated as a remark with the
+%% open problem attached. Target: two pages.
+%% ============================================================
+
+\section{Sharpness}
+\label{sec:sharpness}
+
+The rate $k/6$ delivered by \Cref{thm:weight} is not an artifact of the
+particular weight~\eqref{eq:the-weight}. It is the best rate any weight can
+achieve, and the obstruction is a single coefficient.
+
+\begin{theorem}[Sharpness]
+\label{thm:sharpness}
+Let $p = 2$ and let $e$ be odd. Then $k = 2e$ is a self-loop of the support
+map --- that is, $2e \in \jm(2e) + e\Z_{\ge 0}$ --- and
+\[
+  c_{2e,\,2e} \ = \ \SelfLoopCoeff,
+  \qquad\text{hence}\qquad
+  \dfct(2e) \ \le \ \vtwo(2) \ = \ 1
+\]
+\emph{for every weight whatsoever}. Consequently, at $e = 3$, a target
+$\dfct(k) \ge \max(1, \gamma k)$ is achievable if and only if $\gamma \le
+\RateGamma$, and $\dfct(k) \ge \max(1, k/6)$ is achieved by
+\eqref{eq:the-weight}. At general odd $e$ the threshold is $\gamma \le
+\RateGeneral$.
+\end{theorem}
+
+\begin{proof}
+$k = 2e$ is even, so $\jm(2e) = e$ by \Cref{lem:support}, and $\jm(2e) + e =
+2e = k$: the index $k$ occurs in its own support, at $m = 1$.
+\Cref{thm:closed-form} with $\lambda = k/e = 2$ gives
+\[
+  c_{2e,\,e+e} \ = \ \frac{\lambda^2 - 0}{2!} \ = \ \frac{4}{2} \ = \ 2,
+\]
+independently of $e$ --- the substitution $\lambda = 2$ erases $e$
+entirely. The constraint~\ref{A3b} at $(k,j) = (2e,2e)$ therefore reads
+\[
+  \dfct(2e) \ \le \ \wt(2e) - \wt(2e) + \vtwo\bigl(c_{2e,2e}\bigr) \ = \ 1,
+\]
+in which the weight cancels identically. Since $\dfct(2e) \le 1$ while a
+target $\gamma k$ at $k = 2e$ would demand $\dfct(2e) \ge 2\gamma e$, we
+need $\gamma \le 1/(2e)$; at $e = 3$ that is $\gamma \le 1/6$, attained by
+\Cref{thm:weight}.
+\end{proof}
+
+The same mechanism recurs. The index $k = 4e$ is even with $\jm = 2e$ and
+$\jm + 2e = k$, so it is a self-loop at $m = 2$; \Cref{thm:closed-form} with
+$\lambda = 4$ gives $c_{4e,4e} = 16 \cdot 12/4! = \SelfLoopCoeffTwo$, again
+independent of $e$. Both values are confirmed by exact computation for
+$e = 1,3,5,7,9,11,13,15,21$ and $e = 3,5,7,9,11$ respectively.
+
+\begin{remark}[What Remark 6.5 is really about]
+\label{rem:orbit}
+The descending orbit of the successor map $k \mapsto \jm(k)$ has exactly two
+attractors below $\muP = e = 3$: the fixed point $3$ and the $2$-cycle
+$\{1,2\}$. By \Cref{cor:chebyshev}, $\Utwo(t^{-3}) = t^{-3}$ is a genuine
+eigenvector of eigenvalue $1$, which is why the truncation
+$\muP = e$ is forced rather than chosen; and $k = 6$ is the first index
+above the truncation that still sees it. The obstruction \emph{is} that
+eigenvector, seen one step up.
+\end{remark}
+
+\subsection{Consequence for the contact theory}
+\label{sec:contact-cap}
+
+\Cref{thm:sharpness} has a consequence for \Cref{thm:contact} that is worth
+isolating, because it says the restriction there cannot be traded away.
+
+The contact criterion of~\cite[Theorem 1.1]{kramermillerupton2021newton} is stated
+for a $q$-adic truncation parameter $r \in [0,1]$. Its proof runs through~\cite[Definition 7.3(2)]{kramermillerupton2021newton}, which asks $\dfct(k)/M \ge r$
+for every $k > \muP$, where $M = m_{e,P}$ is the growth parameter of the
+local module. The reduction that makes the sequence of~\cite[\S6.2]{kramermillerupton2021newton} available for the repaired weight needs $M
+\ge 1$. Combining that with \Cref{thm:sharpness} gives $\pi$-adic $r \le 1$
+whatever $M$ is:
+
+\begin{corollary}
+\label{cor:cap-universal}
+No choice of auxiliary tame index $e$ relieves the restriction in
+\Cref{thm:contact}. For every odd $e$ and every weight, $\dfct(2e) \le 1$;
+with $M \ge 1$ this caps the $\pi$-adic truncation parameter at $1$
+regardless of the normalisation.
+\end{corollary}
+
+The conversion to the $q$-adic parameter of~\cite[Theorem 1.1]{kramermillerupton2021newton} is where the order of $\rho$ enters.
+Since $\piq = \pi^{\vp(q)}$ we have $v_{\piq}(x) = \vpi(p)\,\vq(x)$; at $p =
+2$ with $\rho$ of order $2^n$ the ring $R = \Z_2[\zeta_{2^n}]$ is totally
+ramified of degree $2^{n-1}$, so $\vpi(p) = 2^{n-1}$ and $\pi$-adic $r \le
+1$ covers exactly $q$-adic $r \le 2^{1-n}$. Three independent readings of
+the source agree on this factor: the glossary definition of $\piq$; the
+ratio $\dP(p-1)/\deltaP = \vpi(p)$ between the two printings of the same
+local polygon; and the window count $\deg L(\rhoP,s) = \dP - 1$. At order
+$2$ the factor is $1$ and the full range of~\cite[Theorem 1.1]{kramermillerupton2021newton} is covered.
+
+There is a genuine tension here, and we state it as such rather than
+resolving it: \cite{kramermillerupton2021newton} \emph{enlarge} $e$ exactly where the
+reduction shrinks it. The proof of their Theorem 7.13 reads ``since $r \le
+\vpi(p)$, we may enlarge $e$ as necessary and assume that $r \le e$''.
+\Cref{thm:sharpness} says that enlarging $e$ buys nothing at the index $2e$.
+
+\begin{remark}[Open problem]
+\label{rem:open-contact}
+Two routes would remove the restriction in \Cref{thm:contact}, and neither
+has been taken. The first is to prove the exact sequence of~\cite[\S6.2]{kramermillerupton2021newton} outright; it is asserted without proof
+there, at every $p$ and for their own weight, only the $\Adag$ version
+(their Lemma 5.15) being proved. By \Cref{rem:not-a-ring} this is not a cost
+introduced by changing the weight: no admissible weight makes the module a
+ring, at any $p$. The second is to re-run~\cite[\S6.2]{kramermillerupton2021newton}
+and the whole of their \S7 in the coefficientwise formulation of~\cite{kramermiller2020abelian} --- which is available in principle, and is
+exactly why \Cref{thm:main} carries no cap --- but their perturbation
+machinery is built on the $B^{m_e}$ basis and the tuple $m_e$, so
+transporting it is a research problem rather than a citation.
+
+A third, partially explored option: compare $\Am$ (weight $\wt$, parameter
+$m_P$) against the module of~\cite{kramermillerupton2021newton} with their weight and
+parameter $m_P/2$. Since $\wt \le 2\wt_{\mathrm{KMU}}$ for $k \ge 4$ this
+gives a containment, and would relax the cap to $q$-adic $r \le 1/2$
+\emph{uniformly in $n$}; whether the rest of the argument survives the
+substitution has not been checked.
+\end{remark}

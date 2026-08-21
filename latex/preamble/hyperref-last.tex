@@ -1,0 +1,49 @@
+%% ============================================================
+%% preamble/hyperref-last.tex — xurl + hyperref + cleveref (ALWAYS LAST)
+%%
+%% Purpose      : URL line-break hygiene (xurl), hyperref with PDF
+%%                metadata from the generated macros, and cleveref (which
+%%                MUST load after hyperref). Link coloring is text-only,
+%%                never boxed.
+%% Dependencies : every other module (hyperref patches cross-refs,
+%%                floats, footnotes — hence the "last" contract),
+%%                colors.tex (link/url/cite tokens), generated/metadata.tex.
+%% Provenance   : the recurring \emergencystretch/URL-break hack solved
+%%                once here (it appears hand-rolled in four portfolio
+%%                papers); colored-text links from the SSRN cluster.
+%% ============================================================
+
+\usepackage{xurl}       % break long URLs/DOIs at any character (before hyperref)
+% hidelinks: links are live but print black and unboxed. Mathematics
+% preprints split about evenly between blue colorlinks and hidelinks; this
+% paper is monochrome throughout (see colors.tex), so hidelinks it is. Do
+% NOT reintroduce colorlinks without also revisiting that decision.
+\usepackage[hidelinks]{hyperref}
+\usepackage{orcidlink}  % \orcidlink{0000-...} next to an author name
+
+\hypersetup{
+  pdfcreator={LaTeX},
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+}
+% PDF metadata carries author identity — so a double-blind (\AnonMode)
+% build must strip it too, not just the visible title page. Otherwise a
+% referee opening File > Properties sees the real authors.
+\ifdefined\AnonMode
+  \hypersetup{pdftitle={\PaperTitlePlain}, pdfauthor={}, pdfsubject={}, pdfkeywords={}}
+\else
+  \hypersetup{
+    pdftitle={\PaperTitlePlain},
+    pdfauthor={\PaperAuthorPlain},
+    pdfsubject={\PaperAbstractPlain},
+    pdfkeywords={\PaperKeywords},
+  }
+\fi
+
+% cleveref LAST (after hyperref, and after amsmath/amsthm). Capitalized
+% names at sentence start; ranges compressed.
+\usepackage[capitalize,nameinlink]{cleveref}
+\crefname{table}{Table}{Tables}
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Eq.}{Eqs.}
+\crefname{algorithm}{Algorithm}{Algorithms}

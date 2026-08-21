@@ -1,0 +1,89 @@
+%% ============================================================
+%% preamble/theorems.tex — theorem environments (loaded LAST, after cleveref)
+%%
+%% Purpose      : the amsthm environments this paper uses, numbered in one
+%%                shared AMS series, and named correctly by \cref/\Cref.
+%% Dependencies : amsthm (packages.tex), cleveref (hyperref-last.tex),
+%%                aliascnt (loaded here).
+%%
+%% TWO THINGS ARE LOAD-BEARING HERE, AND BOTH WERE MEASURED, NOT ASSUMED.
+%%
+%% 1. This file is input AFTER cleveref (see preamble/main.tex). cleveref
+%%    patches \newtheorem when it loads; an environment declared earlier is
+%%    invisible to that patch.
+%%
+%% 2. That alone is NOT enough, which is the part that is easy to get
+%%    wrong. cleveref names a reference after the COUNTER the environment
+%%    uses, and the plain AMS idiom
+%%
+%%        \newtheorem{lemma}[theorem]{Lemma}
+%%
+%%    makes every environment share the `theorem' counter — which is
+%%    exactly what we want for NUMBERING (so that Lemma 2.1 and Theorem 2.2
+%%    sit in one readable series) and exactly wrong for NAMING. The first
+%%    build of this paper printed "Theorem 2.1" for \Cref{lem:support} and
+%%    "Theorem 3.4" for a remark, in the middle of a proof, and moving this
+%%    file after cleveref did not change it.
+%%
+%%    \newaliascnt is the fix: it gives each environment its OWN counter
+%%    that is an alias of `theorem', so the numbering is still shared and
+%%    cleveref sees a distinct type per environment. \aliascntresetthe is
+%%    required after each alias (aliascnt manual) or \thelemma expands
+%%    wrongly. The \crefname lines below then bind the printed names.
+%%
+%% Check this file by reading a \Cref to a lemma in the built PDF, never by
+%% reading the source: the failure mode is a correct-looking build.
+%% ============================================================
+
+\usepackage{aliascnt}
+
+% ---------------------------------------------------------------------
+% The master counter, numbered within the section.
+% ---------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+
+% Aliased counters: shared numbering, distinct cleveref types.
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+
+\theoremstyle{definition}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+
+\newtheorem{assumption}{Assumption}
+
+\theoremstyle{remark}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+
+% ---------------------------------------------------------------------
+% Printed names. `capitalize' (hyperref-last.tex) makes \Cref capitalise at
+% a sentence start; the lower-case forms below are what \cref uses mid
+% sentence.
+% ---------------------------------------------------------------------
+\crefname{theorem}{Theorem}{Theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{Proposition}{Propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{Corollary}{Corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{Definition}{Definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{Remark}{Remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{assumption}{Assumption}{Assumptions}
+\Crefname{assumption}{Assumption}{Assumptions}

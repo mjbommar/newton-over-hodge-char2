@@ -1,0 +1,16 @@
+# Replication package for "Newton over Hodge at p = 2 ...".
+#
+# Only two checks import sympy -- check_lubin_tate.py (cyclotomic polynomials
+# and polynomial inversion over Q, via lib/lt.py) and lib/l1.py (mobius and
+# generalised binomial coefficients).  Everything else is the standard library
+# only, with exact `fractions.Fraction` arithmetic and no floating point in any
+# assertion.
+#
+# Tested with sympy 1.14.0 on CPython 3.14.4.  Any 1.12+ works; the API used
+# (Poly, cyclotomic_poly, invert, mobius, binomial, QQ) has been stable for
+# years.
+#
+# The Rust side needs no package manager: certificate/run-certificate.sh calls
+# rustc directly.  `run.sh --cargo` additionally builds noh_u2_matrix.rs against
+# num-bigint 0.4 / num-rational 0.4 / num-traits 0.2 (pure Rust, from crates.io).
+sympy>=1.12

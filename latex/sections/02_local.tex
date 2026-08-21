@@ -1,0 +1,488 @@
+%% ============================================================
+%% sections/02_local.tex
+%%
+%% The type-2 operator at p = 2: the closed form, the valuation identity,
+%% the tail estimate, the admissibility conditions, and the repaired
+%% weight. This is the analytic half of the repair. Target: six pages.
+%% ============================================================
+
+\section{The type-2 operator at \texorpdfstring{$p = 2$}{p = 2}}
+\label{sec:local}
+
+Throughout this section $p = 2$ and $e$ is an odd integer. Nothing here
+uses $e = 3$ except \Cref{thm:weight}, whose case analysis is modulo $6$;
+the closed form, the valuation identity and the tail estimate hold for
+every odd $e$.
+
+\subsection{The operator and its support}
+\label{sec:operator}
+
+Let $\eta : X \to \PP^1$ be a tame Belyi map and let $P$ be a point with
+$\eta(P) = 1$ and ramification index $e$. Write $t = t_P$ for a local
+parameter at $P$ and $u = t^e$ for the pullback of the parameter at $1$
+downstairs. The local Frobenius downstairs is $\sigma(u) = (u+1)^p - 1$~\cite[\S4.3]{kramermillerupton2021newton},
+\cite[\S3.4]{kramermiller2020abelian}. We follow~\cite{kramermillerupton2021newton} in writing $\sigma$ for the
+$p$-Frobenius; \cite{kramermiller2020abelian} and~\cite{kramermiller2021padic} call the same map $\nu$ and reserve $\sigma$
+for its $a$-th iterate, so a display compared across the two papers must be
+read with that in mind. At $p = 2$,
+\[
+  \sigma(t)^e \ = \ \sigma(u) \ = \ u^2 + 2u \ = \ t^{2e} + 2t^{e},
+\]
+so that, writing $x := 1/t$,
+\[
+  \sigma(t) = t^2 G, \qquad G := (1 + 2x^e)^{1/e} .
+\]
+The binomial series $G$ converges because $\gcd(e,2) = 1$; this is the only
+place oddness of $e$ is used, and it is used again nowhere. We have
+$[\Edag : \sigma(\Edag)] = 2$, and the nontrivial conjugate of $t$ over
+$\sigma(\Edag)$ is $t' = -tG$: the two roots of $Y^2 + 2Y - \sigma(u)$ are
+$u$ and $u' = -2-u$, and for $e$ odd
+\[
+  (-tG)^e = -t^e(1 + 2x^e) = -(u+2) = u' .
+\]
+
+Let $\Up = \frac{1}{p}\,\sigma^{-1} \circ \Tr_{\Edag/\sigma(\Edag)}$ be the
+Dwork operator of~\cite[Definition 4.9]{kramermillerupton2021newton}. Because
+$\eta(P) = 1$ forces $P \notin \Sinf$, the character $\rho$ is unramified at
+$P$ and \emph{no splitting function enters this estimate at all}; the
+constant $\widetilde{E}_P$ of~\cite[Proposition 6.4]{kramermillerupton2021newton} lies in $1 + \pi \Rq$ and is
+invisible to every valuation below. Writing
+\begin{equation}
+\label{eq:defn-c}
+  \Utwo(t^{-k}) = \sum_j c_{k,j}\, t^{-j}
+\end{equation}
+and applying $\sigma$ to both sides, using $\Tr(t^{-k}) = x^k(1 +
+(-1)^k G^{-k})$ and $\sigma(t^{-j}) = x^{2j}G^{-j}$, gives the defining
+identity
+\begin{equation}
+\label{eq:star}
+  \tfrac{1}{2}\, x^k \bigl( 1 + (-1)^k G^{-k} \bigr)
+  \ = \ \sum_j c_{k,j}\, x^{2j} G^{-j} .
+\end{equation}
+
+\begin{lemma}[Support]
+\label{lem:support}
+The coefficients $c_{k,j}$ vanish unless $j \in \jm(k) + e\Z_{\ge 0}$, where
+\[
+  \jm(k) = \frac{k}{2} \quad (k \text{ even}), \qquad
+  \jm(k) = \frac{k+e}{2} \quad (k \text{ odd}).
+\]
+\end{lemma}
+
+\begin{proof}
+$G$ is a series in $x^e$, so the left side of~\eqref{eq:star} lives in
+degrees congruent to $k$ modulo $e$ and the $j$-th term on the right in
+degrees congruent to $2j$; as $e$ is odd, $2$ is invertible modulo $e$ and
+the admissible $j$ form a single class. For the minimal degree: if $k$ is
+even then $1 + G^{-k} = 2 - (2k/e)x^e + \cdots$, so the left side starts at
+$x^k$ and $2j = k$; if $k$ is odd then $1 - G^{-k} = (2k/e)x^e + \cdots$, so
+it starts at $x^{k+e}$ and $2j = k+e$, an integer because $k$ and $e$ are
+both odd.
+\end{proof}
+
+At $e = 3$ this is exactly the index bookkeeping of~\cite[Remark 6.5]{kramermillerupton2021newton}: with $k = 2\ell - r$ and $r \in
+\{0,1\}$, $k = 2c$ gives $\ell + r = c = \jm(k)$ and $k = 2c-1$ gives
+$\ell + r = c+1 = \jm(k)$. It is worth noting that the fit is exact only at
+$e = 3$: at $e = 5$ the same computation does not fit the shape $k = 2\ell -
+r$ with $r \in \{0,1\}$, so the tame index $3$ is singled out by
+Kramer-Miller--Upton's own phrasing rather than merely consistent with it.
+
+\subsection{The closed form}
+\label{sec:closed-form}
+
+\begin{theorem}[Closed form]
+\label{thm:closed-form}
+Let $p = 2$ and $e$ odd. For every $k \ge 1$ and $m \ge 0$,
+\begin{align}
+  c_{k,\,k/2 + em}
+    &= \frac{\prod_{i=0}^{m-1}\bigl(k^2 - 4e^2 i^2\bigr)}{e^{2m}\,(2m)!}
+    &&(k \text{ even}), \label{eq:cf-even}\\[2pt]
+  c_{k,\,(k+e)/2 + em}
+    &= \frac{k}{e}\cdot
+       \frac{\prod_{i=0}^{m-1}\bigl(k^2 - e^2(2i+1)^2\bigr)}{e^{2m}\,(2m+1)!}
+    &&(k \text{ odd}). \label{eq:cf-odd}
+\end{align}
+\end{theorem}
+
+\begin{proof}
+Put $v := 2x^e$, so that $G = (1+v)^{1/e}$ and $G^e = 1+v$; put
+$(1+v)^{1/2} = \exp(\varphi)$, that is $\varphi = \tfrac12 \log(1+v)$, and
+\[
+  W := \frac{x^{2e}}{1+2x^e} = \frac{(v/2)^2}{1+v} = \frac{v^2}{4(1+v)} .
+\]
+Then $W = \sinh^2(\varphi)$, since $\sinh(\varphi) = \tfrac12\bigl(
+(1+v)^{1/2} - (1+v)^{-1/2}\bigr) = v/(2(1+v)^{1/2})$. Note that $W$ does not
+depend on $e$. Put $\tau := \varphi/e$, so that $(1+v)^{k/(2e)} =
+\exp(k\tau)$ and
+\begin{equation}
+\label{eq:sinh-e-tau}
+  \sinh(e\tau) = \sinh(\varphi) = x^e (1+v)^{-1/2} .
+\end{equation}
+
+Divide~\eqref{eq:star} by $x^{2\jm}G^{-\jm}$ with $\jm = \jm(k)$. Using
+$G^e = 1+v$, the right side becomes
+\[
+  \sum_{m \ge 0} c_{k,\jm+em}\, x^{2em} G^{-em}
+  = \sum_{m \ge 0} c_{k,\jm+em} \Bigl( \frac{x^{2e}}{1+v} \Bigr)^{m}
+  = \sum_{m \ge 0} c_{k,\jm+em}\, W^m .
+\]
+The left side becomes, for $k$ even with $\jm = k/2$,
+\[
+  \frac{\tfrac12 x^k (1 + G^{-k})}{x^k G^{-k/2}}
+  = \tfrac12\bigl( e^{k\tau} + e^{-k\tau} \bigr) = \cosh(k\tau),
+\]
+and for $k$ odd with $\jm = (k+e)/2$,
+\begin{align*}
+  \frac{\tfrac12 x^k (1 - G^{-k})}{x^{k+e} G^{-(k+e)/2}}
+  &= \tfrac12 x^{-e} G^{e/2}\bigl( G^{k/2} - G^{-k/2} \bigr) \\
+  &= x^{-e}(1+v)^{1/2}\sinh(k\tau)
+   = \frac{\sinh(k\tau)}{\sinh(e\tau)},
+\end{align*}
+the last step by~\eqref{eq:sinh-e-tau}.
+
+Set $z := \sinh(\varphi) = W^{1/2}$ and $\lambda := k/e$, so that $k\tau =
+\lambda \varphi = \lambda \arcsinh(z)$. Both $y = \cosh(\lambda\arcsinh z)$
+and $y = \sinh(\lambda \arcsinh z)$ satisfy
+\begin{equation}
+\label{eq:ode}
+  (1+z^2)\,y'' + z\,y' - \lambda^2 y = 0 .
+\end{equation}
+Indeed for the first, $y'\sqrt{1+z^2} = \lambda \sinh(\lambda\arcsinh z)$;
+differentiating and multiplying by $\sqrt{1+z^2}$ gives $(1+z^2)y'' + zy' =
+\lambda^2 y$. The second is identical with $\cosh$ and $\sinh$ exchanged.
+
+The function $\cosh(\lambda \arcsinh z)$ is even; write it $\sum_m a_m
+z^{2m}$. Reading off the coefficient of $z^{2m}$ in~\eqref{eq:ode}, and
+using $2m(2m-1) + 2m = 4m^2$,
+\[
+  (2m+2)(2m+1)\,a_{m+1} + \bigl[4m^2 - \lambda^2\bigr] a_m = 0,
+  \qquad a_0 = 1,
+\]
+so $a_{m+1} = a_m(\lambda^2 - 4m^2)/((2m+2)(2m+1))$, and telescoping with
+$\prod_{i=0}^{m-1}(2i+2)(2i+1) = (2m)!$ gives $a_m =
+\prod_{i=0}^{m-1}(\lambda^2 - 4i^2)/(2m)!$. Since $\cosh(k\tau) = \sum_m
+c_{k,k/2+em}W^m = \sum_m c_{k,k/2+em}z^{2m}$, substituting $\lambda = k/e$
+gives~\eqref{eq:cf-even}.
+
+The function $\sinh(\lambda\arcsinh z)$ is odd; write it $\sum_m b_m
+z^{2m+1}$. The coefficient of $z^{2m+1}$ in~\eqref{eq:ode}, with
+$(2m+1)2m + (2m+1) = (2m+1)^2$, gives
+\[
+  (2m+3)(2m+2)\,b_{m+1} + \bigl[(2m+1)^2 - \lambda^2\bigr] b_m = 0,
+  \qquad b_0 = \lambda,
+\]
+and $\prod_{i=0}^{m-1}(2i+3)(2i+2) = (2m+1)!$, so $b_m = \lambda
+\prod_{i=0}^{m-1}(\lambda^2 - (2i+1)^2)/(2m+1)!$. By
+\eqref{eq:sinh-e-tau}, $\sinh(e\tau) = z$, so the left side in the odd case
+is $\sinh(\lambda\arcsinh z)/z = \sum_m b_m z^{2m}$, giving
+\eqref{eq:cf-odd}.
+\end{proof}
+
+Two consequences are worth stating separately.
+
+\begin{corollary}
+\label{cor:leading-unit}
+$c_{k,\jm(k)} = 1$ for $k$ even and $k/e$ for $k$ odd; in both cases a
+$2$-adic unit, $e$ being odd. Consequently the estimate of
+\textup{\cite[Remark 6.5]{kramermillerupton2021newton}} is sharp as stated: its
+$\dfct(5) = 0$ is real, not the residue of a lossy bound.
+\end{corollary}
+
+\begin{corollary}
+\label{cor:chebyshev}
+If $e \mid k$ the product in \Cref{thm:closed-form} terminates, since
+$\cosh(n\varphi)$ and $\sinh(n\varphi)/\sinh(\varphi)$ are Chebyshev
+polynomials in $W$. Thus $\Utwo(t^{-3}) = t^{-3}$ and $\Utwo(t^{-6}) =
+t^{-3} + 2t^{-6}$ are finite at $e = 3$.
+\end{corollary}
+
+\Cref{cor:chebyshev} is not a curiosity. That $\Utwo(t^{-3}) = t^{-3}$
+exactly says $t^{-e}$ is a genuine eigenvector of eigenvalue $1$, which is
+why the truncation parameter $\muP$ cannot be taken smaller than $e$; and
+$k = 2e$ is the first index above the truncation that still sees it. We
+return to this in \S\ref{sec:sharpness}.
+
+\subsection{The valuations}
+\label{sec:valuations}
+
+\begin{theorem}[Valuation identity]
+\label{thm:valuation}
+Put $\xi_i = 2i$ for $k$ even and $\xi_i = 2i+1$ for $k$ odd, and let
+$\digitsum$ denote the binary digit sum. Then
+\[
+  \vtwo\bigl( c_{k,\,\jm(k)+em} \bigr)
+  \ = \ \Sigma_m(k) - 2m + \digitsum(m),
+\]
+where
+\[
+  \Sigma_m(k) \ := \ \sum_{i=0}^{m-1}
+    \Bigl[ \vtwo(k - e\xi_i) + \vtwo(k + e\xi_i) \Bigr].
+\]
+\end{theorem}
+
+\begin{proof}
+By Legendre's formula $\vtwo(N!) = N - \digitsum(N)$, together with
+$\digitsum(2m) = \digitsum(m)$ and $\digitsum(2m+1) = \digitsum(m)+1$,
+\begin{align*}
+  \vtwo\bigl((2m)!\bigr) &= 2m - \digitsum(m), \\
+  \vtwo\bigl((2m+1)!\bigr) &= 2m+1 - \bigl(\digitsum(m)+1\bigr)
+    = 2m - \digitsum(m),
+\end{align*}
+so both factorials contribute $-(2m - \digitsum(m))$. As $e$ is odd,
+$\vtwo(e^{2m}) = 0$, and in the odd case $\vtwo(k/e) = \vtwo(k) = 0$.
+Finally the numerator factors as $\prod_i (k - e\xi_i)(k + e\xi_i)$ in both
+cases, since $k^2 - 4e^2i^2 = (k-2ei)(k+2ei)$ and $k^2 - e^2(2i+1)^2 =
+(k - e(2i+1))(k + e(2i+1))$.
+\end{proof}
+
+\begin{lemma}[Tail estimate]
+\label{lem:tail}
+For every $k \ge 1$ and every $m \ge 1$,
+\[
+  \vtwo\bigl( c_{k,\,\jm(k)+em} \bigr) \ \ge \ m .
+\]
+Moreover $\vtwo \ge m + \digitsum(m) \ge m+1$ when $k$ is odd or $4 \mid k$,
+and $\vtwo \ge 3\lfloor m/2 \rfloor + \digitsum(m)$ when $k \equiv 2 \bmod
+4$. Equality $\vtwo = m$ occurs \emph{only} for $k \equiv 2 \bmod 4$ and
+$m = 1$.
+\end{lemma}
+
+\begin{proof}
+Recall $e$ is odd.
+
+\emph{Case $k$ odd.} Every $e\xi_i = e(2i+1)$ is odd, so $k^2$ and
+$e^2\xi_i^2$ are both $\equiv 1 \bmod 8$ and $\vtwo(k^2 - e^2\xi_i^2) \ge
+3$. Hence $\Sigma_m \ge 3m$ and \Cref{thm:valuation} gives $\vtwo \ge 3m -
+2m + \digitsum(m) = m + \digitsum(m) \ge m+1$.
+
+\emph{Case $k$ even}, say $k = 2\kappa$. Here $\xi_i = 2i$, so $k \pm
+e\xi_i = 2(\kappa \pm ei)$ and $\Sigma_m = 2m + \sum_{i<m}\vtwo(\kappa^2 -
+e^2i^2)$; \Cref{thm:valuation} then gives
+\[
+  \vtwo\bigl(c_{k,\jm(k)+em}\bigr)
+  = \sum_{i=0}^{m-1} \vtwo\bigl(\kappa^2 - e^2 i^2\bigr) + \digitsum(m).
+\]
+If $\kappa$ is even, i.e.\ $4 \mid k$: for $i$ odd, $ei$ is odd and $\kappa$
+even, so $\kappa \pm ei$ is odd and the term vanishes; for $i$ even
+(including $i = 0$, whose term is $2\vtwo(\kappa) \ge 2$) both $\kappa$ and
+$ei$ are even and the term is $\ge 2$. There are $\lceil m/2 \rceil$ even
+$i$ in $[0,m-1]$, so the sum is $\ge 2\lceil m/2 \rceil \ge m$ and $\vtwo
+\ge m + \digitsum(m) \ge m+1$.
+
+If $\kappa$ is odd, i.e.\ $k \equiv 2 \bmod 4$: for $i$ even the term
+vanishes; for $i$ odd both $\kappa$ and $ei$ are odd, so the term is $\ge 3$
+by the mod-$8$ argument. There are $\lfloor m/2 \rfloor$ odd $i$, whence
+$\vtwo \ge 3\lfloor m/2\rfloor + \digitsum(m)$. For $m$ even this is $\ge
+3m/2 \ge m$; for $m$ odd it is $\ge m$ if and only if $(m-3)/2 +
+\digitsum(m) \ge 0$, which holds for $m \ge 3$ since $\digitsum \ge 1$, and
+at $m = 1$ reads $-1 + 1 = 0$.
+
+For the equality statement: in the odd and $4 \mid k$ cases $\vtwo \ge m +
+\digitsum(m) > m$. In the case $k \equiv 2 \bmod 4$, $m = 1$ gives $\vtwo =
+2\vtwo(\kappa) + \digitsum(1) = 0 + 1 = 1 = m$ since $\kappa$ is odd, while
+for $m \ge 2$ the bound $3\lfloor m/2\rfloor + \digitsum(m)$ exceeds $m$.
+\end{proof}
+
+\subsection{What admissibility asks of a weight}
+\label{sec:admissibility}
+
+A weight is a function $\wt : \Z_{\ge 1} \to \Z_{\ge 0}$; it enters through
+the growth module
+\begin{equation}
+\label{eq:growth-module}
+  \Am \ := \ \Bigl\{ \textstyle\sum_k b_k t_P^{-k}
+      \ : \ \vpi(b_k) \ge \wt(k)/m_P \text{ for } k > 0 \Bigr\},
+\end{equation}
+and on the side of~\cite{kramermiller2020abelian} through the
+coefficientwise module $\Dmod = \prod_{n \in \Z} p^{b(n)} t^n \OL$ with
+$b(-k) = \wt(k)$ (\S\ref{sec:dictionary}). Define the \emph{defect}
+\begin{equation}
+\label{eq:defect}
+  \dfct(k) \ := \ \min_{m \ge 0}
+    \Bigl[ \wt(k) - \wt\bigl(\jm(k)+em\bigr)
+           + \vtwo\bigl(c_{k,\,\jm(k)+em}\bigr) \Bigr] .
+\end{equation}
+The conditions the global argument consumes are the following, each with its
+consumer named. They are read off~\cite[\S\S6.1.2, 6.2, Corollaries 6.7,
+6.8, Lemma 7.11]{kramermillerupton2021newton} and, on the other side,
+\cite[\S7.2, Lemma 6.12, eqs.\ (21), (22)]{kramermiller2020abelian}.
+
+\begin{enumerate}[label=\textup{(A\arabic*)},leftmargin=*,itemsep=2pt]
+\item\label{A1} $\wt(k) = 0$ for $k \le \muP = e$. Consumed by the exact
+  sequence of~\cite[\S6.2]{kramermillerupton2021newton} --- the kernel is the global
+  sections of a line bundle, so poles of order $\le \muP$ must be
+  unweighted --- and by~\cite[eq.\ (21)]{kramermiller2020abelian}.
+\item\label{A2} $\wt(k) = O(k)$. Consumed by~\cite[Corollary 6.7]{kramermillerupton2021newton}, which needs $\bigcup_m
+  \widetilde{V}^m = \widetilde{V}^{\dagger}$.
+\item\label{A3} $\dfct(k) \ge 1$ for $k > \muP$, and $\dfct(k) \to \infty$.
+  The bound $\ge 1$ has a unique consumer,
+  \cite[Lemma 7.11]{kramermillerupton2021newton}, and on the other side~\cite[\S7.2, case (II)]{kramermiller2020abelian}; the divergence is what
+  makes the operator nuclear.
+\item\label{A4} $\wt(k) \ge \dfct(k)$. Consumed in the proof of~\cite[Proposition 6.6(2)]{kramermillerupton2021newton} and by the ``$b(n) \ge m$''
+  step of~\cite[\S7.2, case (II)]{kramermiller2020abelian}.
+\item\label{A5} $\dfct(k) \ge 0$ for $k \le \muP$. This is
+  $\widetilde{\Theta}$-stability in~\cite[Corollary 6.8]{kramermillerupton2021newton} and $\Up \circ C(\Ocon) \subset \Ocon$ in~\cite[eq.\ (22)]{kramermiller2020abelian}.
+\end{enumerate}
+
+Two remarks on the calibration. First, $\vpi(c) = \vpi(p)\vtwo(c)$ and $m_P
+\ge 1/\vpi(p)$, so the $\vtwo$ term enters~\eqref{eq:defect} with
+coefficient at least $1$; using it with coefficient exactly $1$ is therefore
+conservative on the route of~\cite{kramermillerupton2021newton}, and legitimate
+because $\vtwo(c_{k,j}) \ge 0$ --- which is now a consequence of
+\Cref{lem:tail} for $m \ge 1$ and \Cref{cor:leading-unit} for $m = 0$,
+rather than an assumption. On the route of~\cite{kramermiller2020abelian}
+there is no growth parameter and no $\pi$ at all, so the requirement is
+literally $\dfct(k) \ge 1$ in $\vp$ and the calibration is exact.
+
+Second, since the $m = 0$ term of~\eqref{eq:defect} equals
+$\wt(k) - \wt(\jm(k))$ by \Cref{cor:leading-unit}, condition~\ref{A3} splits
+into
+\begin{enumerate}[label=\textup{(A3\alph*)},leftmargin=*,itemsep=2pt]
+\item\label{A3a} $\wt(k) - \wt(\jm(k)) \ge 1$ for $k > \muP$, tending to
+  infinity;
+\item\label{A3b} $\wt(\jm(k)+em) - \wt(\jm(k)) \le
+  \vtwo(c_{k,\jm(k)+em})$ for $m \ge 1$,
+\end{enumerate}
+the second saying that no tail term beats the leading one, so that
+$\dfct(k) = \wt(k) - \wt(\jm(k))$.
+
+\begin{remark}[No admissible weight makes the module a ring, at any $p$]
+\label{rem:not-a-ring}
+Closure of~\eqref{eq:growth-module} under multiplication would need
+$\wt(i+j) \le \wt(i) + \wt(j)$; with~\ref{A1}'s $\wt(e) = 0$ that forces
+$\wt(k+e) \le \wt(k)$, contradicting the divergence in~\ref{A3}. The
+module $B^m$ of~\cite[Definition 6.3]{kramermillerupton2021newton} is not a ring
+either, $u^{-1}$ violating its own growth condition. This matters in
+\S\ref{sec:assembly}: the exactness statement that \Cref{thm:contact}
+needs is a pre-existing feature of the source, not a cost introduced by
+changing the weight.
+\end{remark}
+
+\subsection{The repaired weight}
+\label{sec:weight}
+
+\begin{theorem}[Admissibility]
+\label{thm:weight}
+Let $p = 2$, $e = 3$, $\muP = 3$, and
+\begin{equation}
+\label{eq:the-weight}
+  \wt(k) =
+  \begin{cases}
+    0, & k \le 3,\\[2pt]
+    \Bigl\lfloor \dfrac{k-1}{3} \Bigr\rfloor + (k \bmod 2), & k \ge 4 .
+  \end{cases}
+\end{equation}
+Then~\ref{A1}--\ref{A5} hold; $\dfct(k) \ge 1$ for every $k > 3$; the
+minimum in~\eqref{eq:defect} is attained at $m = 0$, so that $\dfct(k) =
+\wt(k) - \wt(\jm(k))$; and $\dfct(k) \ge 2\lfloor k/12 \rfloor - 1 \to
+\infty$, with $\dfct(k) \sim k/6$.
+\end{theorem}
+
+The weight is \emph{integer-valued}, which is not cosmetic: on the route of~\cite{kramermiller2020abelian} it appears as $p^{\wt(k)}$, which then lies
+in $\OL$ with no base extension. The pointwise-extremal weight attaining the
+same rate takes values in $\tfrac16\Z$ and would require one. It also
+differs from Kramer-Miller--Upton's own weight by at most $1$ at every
+index, so nothing that depends on the weight's growth class changes.
+
+\begin{proof}
+\ref{A1} holds by definition, and~\ref{A2} because $\wt(k) \le (k+2)/3$. For
+\ref{A5}, $\wt(k) = 0$ for $k \le 3$ gives $\dfct(k) = 0 \ge 0$ there.
+\ref{A4} follows once~\ref{A3} is known: by \Cref{cor:leading-unit},
+$\dfct(k) \le \wt(k) - \wt(\jm(k)) \le \wt(k)$ since $\wt \ge 0$.
+
+\emph{The increment formula.} For $n \ge 4$ and $m \ge 1$ one has
+$\lfloor (n+3m-1)/3 \rfloor = \lfloor (n-1)/3 \rfloor + m$ and $(n+3m)
+\bmod 2 = (n+m) \bmod 2$, so
+\begin{equation}
+\label{eq:increment}
+  \wt(n+3m) - \wt(n) =
+  \begin{cases}
+    m, & m \text{ even},\\
+    m+1, & m \text{ odd},\ n \text{ even},\\
+    m-1, & m \text{ odd},\ n \text{ odd}.
+  \end{cases}
+\end{equation}
+It also holds at $n = 2$, where $\wt(2) = 0 = \lfloor 1/3 \rfloor + 0$, and
+\emph{fails} at $n = 1$ and $n = 3$, where~\ref{A1} overrides the closed
+form. Both exceptions are harmless: for $k > 3$ the value $\jm(k) = 1$ never
+occurs ($k$ even gives $\jm \ge 2$, $k$ odd gives $\jm \ge 4$), and $\jm(k)
+= 3$ occurs only for $k = 6$.
+
+\emph{Proof of~\ref{A3b}.} Let $k > 3$, $\jm = \jm(k)$, $m \ge 1$; we must
+show $\wt(\jm+3m) - \wt(\jm) \le \vtwo(c_{k,\jm+3m})$.
+\begin{itemize}[leftmargin=*,itemsep=2pt]
+\item $\jm = 3$. Then $k = 2\jm = 6$, the odd alternative $k = 2\jm - 3 = 3$
+  being excluded by $k > \muP = 3$. By \Cref{thm:closed-form} with $\lambda
+  = 2$ the product has the factor $4-4 = 0$ at $i = 1$, so $c_{6,\jm+3m} =
+  0$ for $m \ge 2$ and only $m = 1$ constrains: $\wt(6) - \wt(3) = 1$ and
+  $c_{6,6} = \lambda^2/2! = 2$, so $\vtwo = 1$. Equality.
+\item $m$ even. The increment is $m$ and \Cref{lem:tail} gives $\vtwo \ge
+  m$.
+\item $m$ odd, $\jm$ odd. The increment is $m-1 < m \le \vtwo$.
+\item $m$ odd, $\jm$ even. The increment is $m+1$. The indices $k$ with
+  $\jm(k) = \jm$ are $k = 2\jm$ and $k = 2\jm - 3$; $\jm$ even makes $2\jm
+  \equiv 0 \bmod 4$, and $2\jm - 3$ is odd, so in \emph{both} cases the
+  refinement in \Cref{lem:tail} gives $\vtwo \ge m + \digitsum(m) \ge m+1$.
+\end{itemize}
+
+Observe why the parity indicator is exactly the right correction:
+\Cref{lem:tail} is tight only at $k \equiv 2 \bmod 4$, $m = 1$, that is at
+$\jm = k/2$ \emph{odd} --- precisely the case in which the indicator makes
+the increment go \emph{down} by one rather than up. The two tightnesses are
+complementary, which is why $\lfloor (k-1)/3\rfloor$ alone fails at $k = 5$
+and $\lfloor (k-1)/3 \rfloor + (k \bmod 2)$ does not.
+
+\emph{Proof of~\ref{A3a}.} Write $c := \jm(k)$, so $k = 2c$ for $k$ even and
+$k = 2c-3$ for $k$ odd, in which case $c \ge 4$ because $k > 3$. Put $c =
+6\mathfrak{q} + r$ with $0 \le r \le 5$ and use $\lfloor (6\mathfrak{q}+s)/3
+\rfloor = 2\mathfrak{q} + \lfloor s/3 \rfloor$.
+
+For $k = 2c$ even, $\wt(2c) = \lfloor (12\mathfrak{q}+2r-1)/3\rfloor =
+4\mathfrak{q} + \lfloor (2r-1)/3 \rfloor$ while $\wt(c) = 2\mathfrak{q} +
+\lfloor (r-1)/3 \rfloor + (r \bmod 2)$, so
+$\dfct = 2\mathfrak{q} + \lfloor (2r-1)/3\rfloor - \lfloor (r-1)/3 \rfloor -
+(r \bmod 2)$. For $k = 2c-3$ odd, $\wt(k) = \lfloor (2c-4)/3\rfloor + 1 =
+4\mathfrak{q} + \lfloor (2r-4)/3 \rfloor + 1$, so $\dfct = 2\mathfrak{q} +
+\lfloor (2r-4)/3 \rfloor - \lfloor (r-1)/3\rfloor - (r \bmod 2) + 1$. The
+two evaluate identically:
+
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+$r$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\
+\midrule
+$\dfct$ & $2\mathfrak{q}$ & $2\mathfrak{q}-1$ & $2\mathfrak{q}+1$
+        & $2\mathfrak{q}$ & $2\mathfrak{q}+1$ & $2\mathfrak{q}+1$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+For $r \in \{2,4,5\}$ we get $\dfct \ge 1$ for every $\mathfrak{q} \ge 0$.
+For $r \in \{0,1,3\}$ we need $\mathfrak{q} \ge 1$, and the cases
+$\mathfrak{q} = 0$ are $c \in \{0,1,3\}$: on the even branch $c = 0,1$ give
+$k = 0,2$, excluded by $k > 3$, and $c = 3$ gives $k = 6$, where the closed
+form for $\wt(c)$ is invalid and~\ref{A1} applies, $\dfct(6) = \wt(6) -
+\wt(3) = 1$; on the odd branch $c \ge 4$, so none occurs. Finally $c = 2$
+(that is $r = 2$, $\mathfrak{q} = 0$, $k = 4$) uses the validity of
+\eqref{eq:increment} at $n = 2$: $\dfct(4) = \wt(4) - \wt(2) = 1$.
+
+\emph{Divergence.} In both branches $\dfct \ge 2\mathfrak{q} - 1 = 2\lfloor
+c/6 \rfloor - 1$, and $c = \jm(k) \ge k/2$, so $\dfct(k) \ge 2\lfloor k/12
+\rfloor - 1 \to \infty$; asymptotically $\dfct(k) \sim c/3 \sim k/6$.
+\end{proof}
+
+\begin{remark}[Machine confirmation]
+\label{rem:machine-local}
+An exact-rational sweep over $4 \le k \le \SweepAdmK$ and the full support
+$m \le \SweepAdmM$ finds no violation of~\ref{A3}, the minimum attained at
+$m = 0$ for every $k$, and $\min \dfct = 1$, with $\dfct(100) =
+\SweepDefectHundred$, $\dfct(200) = \SweepDefectTwoHundred$ and
+$\dfct(\SweepAdmK) = \SweepDefectFourHundred$; the control run with
+$\wt(k) = \lfloor (k-1)/3 \rfloor$ reproduces $\dfct(5) = 0$. The
+coefficients are computed twice, once from \Cref{thm:closed-form} and once
+by a from-scratch series solve of~\eqref{eq:star} that never uses it,
+agreeing on all $\SweepPairs$ pairs examined for $e \in \{1,3,5,7\}$;
+\Cref{thm:valuation} is checked to $k \le \SweepValK$ and \Cref{lem:tail} to
+$k \le \SweepTailK$, $m \le \SweepTailM$, where the $\SweepTightPairs$ tight
+pairs found are all of the predicted shape.
+\end{remark}

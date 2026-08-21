@@ -1,0 +1,80 @@
+% ------------------------------------------------------------
+% preamble/metadata.tex — the paper's metadata macros.
+%
+% ../paper.yaml IS CANONICAL. It says so itself: "If the LaTeX title block
+% and this file disagree, this file is right." This repository has no
+% metadata generator, so the values below are a hand-maintained mirror of
+% paper.yaml's `paper:`, `classification:`, `typography:`, `citations:` and
+% `disclosure:` blocks. Change paper.yaml first, then mirror it here.
+%
+% main.tex inputs generated/metadata.tex when it exists and this file
+% otherwise, so a future generator can take over without touching main.tex.
+%
+% ONE DELIBERATE DIVERGENCE, recorded rather than silent: paper.yaml's
+% `short_title` is written without math ("Newton over Hodge at p = 2")
+% because it also feeds plain-text fields. \PaperShortTitle sets the amsart
+% RUNNING HEAD, where an upright roman "p = 2" on every page would be wrong,
+% so it carries the math. The words are identical.
+% ------------------------------------------------------------
+
+\newcommand{\PaperTitle}{Newton over Hodge at $p = 2$ for $2$-power-order characters on arbitrary smooth affine curves}
+\newcommand{\PaperTitlePlain}{Newton over Hodge at p = 2 for 2-power-order characters on arbitrary smooth affine curves}
+\newcommand{\PaperSubtitle}{}
+\newcommand{\PaperShortTitle}{Newton over Hodge at $p = 2$}
+\newcommand{\PaperDate}{\today}
+
+\newcommand{\PaperAbstract}{Newton-over-Hodge lower bounds for Artin--Schreier--Witt $L$-functions on arbitrary smooth affine curves are known only for odd $p$: at $p = 2$ the Kramer-Miller--Upton local estimate degrades to $a(k) = \lfloor (k-1)/3 \rfloor$, which they call too low for applications to the global setting. We show that this is an artifact of one weight choice, not of the prime. The $3$ is the tame ramification index of an auxiliary Belyi map, and the weight $a(k) = \lfloor (k-1)/3 \rfloor + (k \bmod 2)$ is admissible for every $k$, with defect $d(k) \ge \max(1, k/6)$; the rate $1/6$ is exactly optimal, since $k = 2e$ is a self-loop of the local operator with coefficient $2$ for every weight. Adding a characteristic-$2$ tame Belyi map of uniform index $3$ over the point $1$, we obtain $\mathrm{NP}_q(L(\rho,s)) \ge \mathrm{HP}_q(\rho)$ as full polygons, with no truncation, for every nontrivial character of $2$-power order on a smooth affine curve over $\mathbf{F}_{2^a}$. We also give the local-to-global contact criterion at $p = 2$ on an initial segment, prove that restriction structural, and record corrections to the literature.}
+
+\newcommand{\PaperAbstractPlain}{Newton-over-Hodge lower bounds for Artin-Schreier-Witt L-functions on arbitrary smooth affine curves are known only for odd p: at p = 2 the Kramer-Miller-Upton local estimate degrades to a(k) = floor((k-1)/3), which they call too low for applications to the global setting. We show that this is an artifact of one weight choice, not of the prime. The 3 is the tame ramification index of an auxiliary Belyi map, and the weight a(k) = floor((k-1)/3) + (k mod 2) is admissible for every k, with defect d(k) >= max(1, k/6); the rate 1/6 is exactly optimal, since k = 2e is a self-loop of the local operator with coefficient 2 for every weight. Adding a characteristic-2 tame Belyi map of uniform index 3 over the point 1, we obtain NP\_q(L(rho,s)) >= HP\_q(rho) as full polygons, with no truncation, for every nontrivial character of 2-power order on a smooth affine curve over F\_\{2\textasciicircum{}a\}. We also give the local-to-global contact criterion at p = 2 on an initial segment, prove that restriction structural, and record corrections to the literature.}
+
+\newcommand{\PaperKeywords}{Newton polygon, Hodge polygon, Artin--Schreier--Witt covers, exponential sums, characteristic $2$, $L$-functions}
+\newcommand{\PaperMSC}{Primary 11T23; Secondary 11G20, 11S15, 14F30, 14G15}
+\newcommand{\PaperSeries}{}
+\newcommand{\PaperEngine}{pdflatex}
+\newcommand{\PaperFontProfile}{lmodern}
+\newcommand{\PaperLineSpacing}{single}
+\newcommand{\PaperBibSystem}{natbib}
+\newcommand{\PaperBibStyle}{numeric}
+\newcommand{\PaperBibTitle}{References}
+\newcommand{\PaperVenue}{arxiv}
+\newcommand{\PaperLicense}{CC BY 4.0}
+
+\newcommand{\PaperAIStatement}{The mathematics in this paper was produced by a multi-agent AI pipeline with an adversarial verification stage: proving agents wrote the arguments, an independent auditing agent re-derived them from the definitions and attempted to refute them, and every assertion carries the label the audit left it with. The complete audit trail, including the results that were refuted and withdrawn, is in \texttt{research-log/} in the accompanying repository. The author directed the program, is solely responsible for all content, and does not represent the machine-checked components as a substitute for human referee review.}
+
+\newcommand{\PaperFunding}{none to declare}
+\newcommand{\PaperCompeting}{none to declare}
+
+\newcommand{\PaperDataAvail}{The self-checking verification programs for the local weight theory (the operator matrix and the Theorem 1--4 certificate), the from-scratch cross-checks, and the standalone verifier scripts accompany this paper in the repository \url{https://github.com/mjbommar/newton-over-hodge-char2} under \texttt{replication/}, together with the full research log. Each program asserts its findings and exits nonzero on any failure, so its exit status depends on what the run found rather than on the run completing. No external solver or computer-algebra system is required.}
+
+\newcommand{\PaperBaseSize}{11pt}
+\newcommand{\PaperPaperOption}{letterpaper}
+\newcommand{\PaperTitleBackground}{}
+\newcommand{\PaperAuthorPlain}{Michael Bommarito}
+\newcommand{\PaperAuthorFirst}{Michael Bommarito}
+
+\newif\ifPaperHasSubtitle\PaperHasSubtitlefalse
+\newif\ifPaperHasKeywords\PaperHasKeywordstrue
+\newif\ifPaperHasMSC\PaperHasMSCtrue
+\newif\ifPaperHasSeries\PaperHasSeriesfalse
+\newif\ifPaperVenueArxiv\PaperVenueArxivtrue
+\newif\ifPaperVenuePreprint\PaperVenuePreprintfalse
+\newif\ifPaperEnginePDF\PaperEnginePDFtrue
+\newif\ifPaperBibNatbib\PaperBibNatbibtrue
+\newif\ifPaperBibBiblatex\PaperBibBiblatexfalse
+\newif\ifPaperBibNumeric\PaperBibNumerictrue
+\newif\ifPaperTwoColumn\PaperTwoColumnfalse
+\newif\ifPaperHasTitleBackground\PaperHasTitleBackgroundfalse
+\newif\ifPaperModuleBoxes\PaperModuleBoxesfalse
+\newif\ifPaperModuleCode\PaperModuleCodefalse
+\newif\ifPaperModuleAlgo\PaperModuleAlgofalse
+\newif\ifPaperModuleSI\PaperModuleSIfalse
+\newif\ifPaperSortCites\PaperSortCitestrue
+\newif\ifPaperAIUsed\PaperAIUsedtrue
+
+\newcommand{\PaperAuthorBlock}{%
+  {\large Michael Bommarito\par}%
+}
+\newcommand{\PaperAuthorAMS}{%
+  \author{Michael Bommarito}%
+  \email{michael.bommarito@gmail.com}%
+}

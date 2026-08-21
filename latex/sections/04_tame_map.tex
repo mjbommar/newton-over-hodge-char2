@@ -1,0 +1,338 @@
+%% ============================================================
+%% sections/04_tame_map.tex
+%%
+%% The geometric half: the characteristic-2 tame Belyi map with uniform
+%% index e over 1, the c^{p-1} = 1 correction, the necessity of 3 | q-1 at
+%% degree 3, and the base-change reduction that makes it free.
+%% Target: four pages.
+%% ============================================================
+
+\section{The characteristic-2 tame Belyi map}
+\label{sec:tame-map}
+
+\subsection{What degenerates at \texorpdfstring{$p = 2$}{p = 2}}
+\label{sec:degeneration}
+
+The map the global argument needs is described in~\cite[\S4.1]{kramermillerupton2021newton} as a composition
+\[
+  \eta_q : \PP^1 \xrightarrow{\ (q-1)\text{-power}\ } \PP^1
+    \xrightarrow{\ \text{linear}\ } \PP^1
+    \xrightarrow{\ (p-1)\text{-power}\ } \PP^1
+    \xrightarrow{\ \text{linear}\ } \PP^1 ,
+\]
+the second map fixing $1$ and $\infty$ and sending $0$ to another
+$\Fq$-rational point, the last swapping $0$ and $1$. Precomposed with a tame
+map $\eta_0 : X \to \PP^1$ this yields~\cite[Proposition 4.3]{kramermillerupton2021newton}: a tame Belyi map $\eta$ with
+$\eta(P) = 0$ for each $P \in \Sinf$, and ramification index $p-1$ at every
+$P$ with $\eta(P) = 1$.
+
+At $p = 2$ this degenerates in three independent ways, all of them the
+single fact $\mu_{p-1} = \{1\}$: the map $z \mapsto z^{p-1}$ is the
+identity, so no ramification is created; the resulting index $e_P = 1$ is
+incompatible with the degree identity below whenever $g \ge 1$; and the
+auxiliary point that~\cite[Lemma 3.1]{kramermiller2021padic} places at
+$c = 2$ \emph{is} the point $0$ in characteristic $2$, so even the placement
+step is empty. In addition the input is unavailable: $\eta_0$ is obtained at
+$p \ge 3$ from Fulton's simply-branched map~\cite{fulton1969hurwitz}, and
+simple branching is not tame at $p = 2$.
+
+Both halves are replaceable. The tame map exists over a finite field at
+every characteristic by~\cite[Theorems 1.2 and
+7.6]{kedlayalittwitaszek2020tame}, resting on~\cite[Theorem 1.1]{sugiyamayasuda2020belyi} over an algebraically closed
+field; and \emph{tame} is all that~\cite[Theorem 4.1]{kramermillerupton2021newton} asks of it. The $(p-1)$-power stage
+is replaced by an $e$-power stage for any odd $e \mid q-1$.
+
+\subsection{The construction}
+\label{sec:belyi}
+
+\begin{lemma}[Tame Belyi map of uniform index $e$]
+\label{lem:belyi}
+Let $q = 2^a$, let $X$ be a smooth projective geometrically irreducible
+curve over $\Fq$, let $\Sinf \subset X$ be a finite set of closed points,
+and let $e > 1$ be odd with $e \mid q-1$. Then, after enlarging $\Fq$ if
+necessary --- only to make branch points and $\Sinf$ rational and $q$ large
+--- there is a tame Belyi map $\eta : X \to \PP^1_{\Fq}$, finite and
+separable, ramified only over $\{0,1,\infty\}$ with all branch points
+$\Fq$-rational, such that
+\begin{enumerate}[label=\textup{(\arabic*)},leftmargin=*,itemsep=1pt]
+\item $\eta(P) = 0$ for every $P \in \Sinf$;
+\item every $P \in \eta^{-1}(1)$ has ramification index exactly $e$;
+\item hence $r_1 e = \deg \eta$, $\eta^*(1) = \sum_{\eta(P)=1} eP$, and
+  \begin{equation}
+  \label{eq:rh}
+    2(g-1) + r_0 + r_1 + r_\infty = \deg \eta ,
+  \end{equation}
+  where $r_Q = |\eta^{-1}(Q)|$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\emph{Step 0 (the tame map).} By~\cite[Theorem 1.2]{kedlayalittwitaszek2020tame} there is a finite separable
+tame $\eta_0 : X \to \PP^1_{\Fq}$; no base extension is needed for this
+step. Enlarge $\Fq$ so that every branch point of $\eta_0$ and every point
+of $\Sinf$ is rational, that $\mu_e \subset \Fq$ (automatic from $e \mid
+q-1$), and that $q + 1 > |\Branch(\eta_0) \cup \eta_0(\Sinf)| + 2$; then
+choose the coordinate on the target so that $0$ and $\infty$ avoid
+$\Branch(\eta_0)\cup\eta_0(\Sinf)$, which therefore lies in $\Fq^\times$.
+
+\emph{Step 1 (the $(q-1)$-power map).} Let $g_1(z) = z^{q-1}$. Since $q-1$
+is odd, $g_1$ is tame; its derivative $(q-1)z^{q-2} = z^{q-2}$ vanishes only
+at $0$, so it is totally ramified over $0$ and $\infty$ with index $q-1$ and
+unramified elsewhere, and $g_1(\Fq^\times) = \{1\}$. Put $\phi := g_1 \circ
+\eta_0$. Then $\Branch(\phi) \subset \{0,1,\infty\}$ and $\phi(\Sinf) =
+\{1\}$; and because $0$ is not a branch point of $\eta_0$, every point of
+$\phi^{-1}(0) = \eta_0^{-1}(0)$ has index exactly $q-1$.
+
+\emph{Step 2 (the linear map).} Choose $c \in \mu_e(\Fq)\setminus\{1\}$,
+nonempty since $e \mid q-1$ and $e > 1$, and let $g_2 \in \PGL_2$ fix $1$
+and $\infty$ with $g_2(0) = c$. Then $\Branch(g_2\phi) = \{c,1,\infty\}$ and
+$(g_2\phi)(\Sinf) = \{1\}$, and the point $0$ is \emph{not} in this branch
+locus, $c$ being a root of unity.
+
+The role of $g_2$ is not decorative. Its sole job is to evacuate the point
+$0$ from the branch locus, so that the fibre over $0$ is clean for Step 3.
+Without it, $0 \in \Branch(\phi)$ and the points of $(g_3\phi)^{-1}(0)$
+would have index $e\cdot e_\phi(\cdot)$ with $e_\phi$ varying over the
+fibre; the fibre over the final $1$ would then have \emph{mixed} index and
+claim~(2) would be false.
+
+\emph{Step 3 (the $e$-power map).} Let $g_3(z) = z^e$. Since $\gcd(e,2) =
+1$, $g_3$ is tame; it is totally ramified over $0$ and $\infty$ with index
+$e$, unramified elsewhere, and $g_3^{-1}(1) = \mu_e \ni c,1$. Hence, using
+$c^e = 1$,
+\[
+  \Branch(g_3g_2\phi) \subset g_3(\{c,1,\infty\}) \cup \{0,\infty\}
+  = \{0,1,\infty\} .
+\]
+The fibre $g_3^{-1}(0) = \{0\}$ has index $e$, and $0$ is unramified for
+$g_2\phi$ by Step 2, so every point of $(g_3g_2\phi)^{-1}(0)$ has index
+exactly $e$; there are $\deg(g_2\phi) = (q-1)\deg\eta_0$ of them.
+
+\emph{Step 4 (the swap).} Let $g_4 \in \PGL_2$ fix $\infty$ and swap $0$ and
+$1$; it carries the $\Sinf$-fibre, over $1$, to $0$, and the
+uniform-index-$e$ fibre, over $0$, to $1$. Set $\eta := g_4g_3g_2g_1\eta_0$.
+Claims (1) and (2) hold.
+
+\emph{Tameness.} Ramification indices multiply and every factor is odd:
+$e_{\eta_0}$ is odd because $\eta_0$ is tame at $p = 2$; $q-1$ is odd; $e$
+is odd; linear maps are unramified. Explicitly $e_\eta(P) = e_{\eta_0}(P)$
+for $P \in \Sinf$, $e_\eta(P) = e$ for $P$ over $1$, and $e_\eta(P) =
+e(q-1)e_{\eta_0}(P)$ for $P$ over $\infty$. So $\eta$ is tame, and finite
+and separable as a composite of such.
+
+\emph{Claim (3).} All points over $1$ have index $e$ and indices over a
+point sum to the degree, so $r_1e = \deg\eta$ and $\eta^*(1) =
+\sum_{\eta(P)=1}eP$. Tame Riemann--Hurwitz for $\eta$, unramified outside
+$\{0,1,\infty\}$, gives
+\[
+  2g-2 = -2\deg\eta + \sum_{Q\in\{0,1,\infty\}}\sum_{P \mid Q}(e_P-1)
+       = -2\deg\eta + \sum_Q\bigl(\deg\eta - r_Q\bigr),
+\]
+which is~\eqref{eq:rh}.
+\end{proof}
+
+Two features of the construction should be stated explicitly, since both are
+things a reader checks first.
+
+\begin{remark}[The fibre over the final $0$ is a genuine mixture]
+\label{rem:mixed-fibre}
+It contains the points of $\Sinf$ with index $e_{\eta_0}$, the points of
+$\eta_0^{-1}(0)$ arriving via $c$ with index $q-1$, and $e-2$ unramified
+sheets from the remaining $e$-th roots of unity. This is harmless:
+\cite{kramermillerupton2021newton} asks only $\eta(\Sinf) = \{0\}$, and~\cite{kramermiller2020abelian} only that the points at infinity lie in
+$\eta^{-1}(\{0,\infty\})$. Neither asks that the whole fibre be $\Sinf$.
+\end{remark}
+
+\begin{remark}[Where the second ramification point of $z \mapsto z^e$ goes]
+\label{rem:second-branch}
+The map $z \mapsto z^e$ ramifies at $0$ and at $\infty$. The point $0$ is
+the wanted one and becomes the fibre over the final $1$; the point $\infty$
+maps to $\infty$, which $g_4$ fixes, so the second ramification point lands
+over $\infty$ with index $e(q-1)e_{\eta_0}$ --- large, but odd, hence tame.
+It creates no new type-$2$ point and does not meet $\Sinf$. The reason is
+that at $\eta(Q) \in \{0,\infty\}$ the local Frobenius is a \emph{pure}
+$p$-th power: \cite[\S3.4]{kramermiller2020abelian} takes the local
+parameter to be $u_Q = t^{\pm 1/e_Q}$ with a general $e_Q$ and records
+$\sigma(u_Q) = u_Q^q$, so the unique $e_Q$-th root congruent to $t^p$ modulo
+$p$ is $t^p$ itself whatever $e_Q$ is. Only over $1$, where $\sigma(u) =
+(u+1)^p - 1$ is not a pure power, does the root extraction produce the
+factor $G$ of \S\ref{sec:operator}.
+\end{remark}
+
+\subsection{The auxiliary point must be a root of unity}
+\label{sec:c-correction}
+
+\begin{proposition}
+\label{prop:c-correction}
+In the construction of \S\ref{sec:degeneration}, the target $c$ of the
+linear map must satisfy $c^{p-1} = 1$. The description in
+\textup{\cite[Proposition 4.3]{kramermillerupton2021newton}} of that map as sending
+$0$ to ``any other $\Fq$-rational point'' over-states the freedom, at every
+$p$.
+\end{proposition}
+
+\begin{proof}
+After the linear map the branch locus is $\{c,1,\infty\}$; after $z \mapsto
+z^{p-1}$ it is $\{c^{p-1},1,\infty\}\cup\{0,\infty\}$. For the composite to
+be Belyi one needs $c^{p-1} \in \{0,1,\infty\}$, and $c \notin
+\{0,\infty\}$ excludes the first and third, forcing $c^{p-1} = 1$, that is
+$c \in \mu_{p-1}(\Fq)\setminus\{1\}$.
+\end{proof}
+
+This is load-bearing rather than cosmetic: with a generic $c$ the composite
+acquires a \emph{fourth} branch point, $\eta^{-1}(V)$ is not \'etale over
+$V$, and the lifting of~\cite[\S4.2]{kramermillerupton2021newton} has no basis. But
+no published mathematics is wrong. The original,
+\cite[Lemma 3.1]{kramermiller2021padic}, puts the branch points at
+$\{1,2,\infty\}$, that is $c = 2$, and $2^{p-1} = 1$ in $\F_p$ by Fermat
+with $2 \ne 1$ for $p \ge 3$. The defect is confined to the paraphrase in~\cite{kramermillerupton2021newton}, and the repair is one word: $c \in
+\mu_{p-1}(\Fq)\setminus\{1\}$, a set that is nonempty \emph{exactly because}
+$p \ge 3$. At $p = 2$ the point ``$2$'' is the point $0$, which is the third
+degeneration of \S\ref{sec:degeneration}.
+
+\subsection{Degree three forces \texorpdfstring{$3 \mid q-1$}{3 | q-1}}
+\label{sec:three-divides}
+
+\begin{proposition}
+\label{prop:three-divides}
+A degree-$3$ auxiliary map with the properties Steps 2--4 of
+\Cref{lem:belyi} require exists over $\Fq$, $q = 2^a$, if and only if $3
+\mid q-1$, that is if and only if $a$ is even.
+\end{proposition}
+
+\begin{proof}
+Write the auxiliary stage as one map $h = g_4g_3g_2 : \PP^1 \to \PP^1$. It
+is required to be tame, with $\Branch(h) \subset \{0,1,\infty\}$ and
+$h(\{0,1,\infty\}) \subset \{0,1,\infty\}$ and $h(1) = 0$, and with every
+$y \in h^{-1}(1)$ satisfying $e_h(y) = 3$ and $y \notin \{0,1,\infty\}$ ---
+the last so that the earlier stage, whose branch locus is $\{0,1,\infty\}$,
+is unramified there. Sufficiency is \Cref{lem:belyi} with $e = 3$.
+
+For necessity, Riemann--Hurwitz for a tame degree-$3$ self-map of $\PP^1$ in
+characteristic $2$ gives $\sum_P(e_P-1) = 4$ with every $e_P$ odd --- $e_P =
+2$ being wild --- and $e_P \le 3$, so $e_P \in \{1,3\}$ and there are
+exactly two totally ramified points. Call them $\alpha$, lying over $1$, and
+$\beta$; then $h^*(1) = 3[\alpha]$ and $h^*(w) = 3[\beta]$ with $w := h(\beta)
+\in \{0,\infty\}$, since the fibre over $1$ is $\{\alpha\}$, and $h$ is
+unramified elsewhere. Four configurations remain, and each forces $\alpha^3
+= 1$ with $\alpha \ne 1$; we work in characteristic $2$ throughout.
+
+\emph{$w = \infty$, $\beta = \infty$.} Then $h$ is a cubic polynomial;
+$h(0) = \infty$ is impossible and $h(0) = 1$ would force $\alpha = 0$, so
+$h(0) = 0$. Total ramification at $\alpha$ over $1$ gives $h =
+\lambda(z+\alpha)^3 + 1$, so $h(1) = 0$ gives $\lambda(1+\alpha)^3 = 1$ and
+$h(0) = 0$ gives $\lambda\alpha^3 = 1$, whence $(1+\alpha^{-1})^3 = 1$.
+Setting $\gamma := 1 + \alpha^{-1} \ne 1$, $\gamma$ is a primitive cube root
+of unity, and $\gamma^2 + \gamma + 1 = 0$ gives $\alpha = \gamma^{-2} =
+\gamma$.
+
+\emph{$w = \infty$, $\beta \ne \infty$.} Then $h(\infty) = 0$. If $\beta =
+0$ then $h = \lambda(z+\alpha)^3/z^3$ and $h(1) = 0$ forces $\alpha = 1$,
+excluded. So $\beta \notin\{0,1,\infty\}$, $h^*(0) = [0]+[1]+[\infty]$ and
+$h = \lambda z(z+1)/(z+\beta)^3$. Matching $(z+\beta)^3 + \lambda z(z+1) =
+(z+\alpha)^3$ gives $\beta + \lambda = \alpha$, $\beta^2 + \lambda =
+\alpha^2$ and $\beta^3 = \alpha^3$. The first two give $(\alpha+\beta)^2 =
+\alpha+\beta$, so $\beta = \alpha$ --- whence $\lambda = 0$, degenerate ---
+or $\beta = \alpha+1$; the third then gives $(\alpha+1)^3 = \alpha^3$, that
+is $\alpha^2+\alpha+1 = 0$.
+
+\emph{$w = 0$.} Then $h^*(0) = 3[\beta]$, and $h(1) = 0$ forces $\beta = 1$;
+also $h(0) = h(\infty) = \infty$, the alternatives forcing $0 = 1$ or
+$\alpha \in \{0,\infty\}$. So $h = \lambda(z+1)^3/(z(z+\beta'))$ for a third
+simple pole $\beta'$, and matching $\lambda(z+1)^3 + z(z+\beta') =
+\lambda(z+\alpha)^3$ gives, from the constant coefficient, $\lambda =
+\lambda\alpha^3$, that is $\alpha^3 = 1$; and $\alpha = 1$ would make the
+$z^2$ coefficient read $\lambda + 1 = \lambda$. The remaining configuration,
+$w = 0$ with $\beta \ne 1$, is impossible since $h(1) = 0$ and the fibre
+over $0$ is $\{\beta\}$.
+
+So $\alpha$ is a primitive cube root of unity in $\Fq$, whence $3 \mid q-1$.
+\end{proof}
+
+An independent enumeration over $\Fqbar$ for $a \le 6$ confirms the pattern
+and the set of admissible $\alpha$: no such map for $q = 2, 8, 32$, and for
+$q = 4, 16, 64$ exactly the maps with $\alpha \in \mu_3(\Fq)\setminus\{1\}$.
+
+\begin{remark}[Explicit instance]
+\label{rem:explicit}
+For $X = \PP^1$, $\eta_0 = \id$, $\Sinf \subset \Fq^\times$ and $\omega$ a
+primitive cube root of unity, \Cref{lem:belyi} produces $\eta(z) =
+\bigl((1+\omega)z^{q-1}+\omega\bigr)^3 + 1$ of degree $3(q-1)$, with
+$r_1 = q-1$ points of index exactly $3$ over $1$, $r_0 = 2q-1$ and
+$r_\infty = 1$. Then~\eqref{eq:rh} reads $2(0-1)+(2q-1)+(q-1)+1 = 3q-3$ and
+$\sum_P(e_P-1) = 6q-8 = 2\deg\eta - 2$, so Riemann--Hurwitz is saturated by
+these three fibres and $\eta$ really is Belyi. Verified symbolically and
+numerically over $\F_4$ and $\F_{16}$ in the replication package.
+\end{remark}
+
+\subsection{The base change is free}
+\label{sec:base-change}
+
+\Cref{prop:three-divides} makes $\eta$ at $e = 3$ available only when $a$ is
+even. For $a$ odd one passes to $\F_{q^2}$, and this costs nothing. Both
+source papers already license unspecified extensions ---
+\cite[\S2.1]{kramermiller2020abelian} says ``it is enough to prove
+Theorem 1.1 after replacing $q$ with a larger power of $p$'' --- but neither
+proves the reduction, and here it carries weight, so we prove it.
+
+\begin{proposition}[Base-change invariance]
+\label{prop:base-change}
+Let $\F_{q^m}/\Fq$ be finite and $\rho' = \rho|_{\pi_1(X_{\F_{q^m}})}$, and
+assume $\rho'$ nontrivial. Then $\NP_{q^m}(\rho') = \NP_q(\rho)$ and
+$\HP_{q^m}(\rho') = \HP_q(\rho)$ as polygons. Hence \Cref{thm:main} over
+$\F_{q^m}$ implies it over $\Fq$.
+\end{proposition}
+
+\begin{proof}
+\emph{Newton side.} The cohomology $H^1_c(X_{\Fqbar}, \calF_\rho)$ is
+geometric, hence unchanged, and $\Frob_{q^m} = \Frob_q^m$, so the inverse
+roots become $\alpha_i^m$. In the $q^m$-adic normalisation
+\[
+  v_{q^m}(\alpha_i^m) = \frac{\vp(\alpha_i^m)}{\vp(q^m)}
+   = \frac{m\,\vp(\alpha_i)}{m\,\vp(q)} = \vq(\alpha_i),
+\]
+so the multiset of normalised valuations, and hence the polygon, is
+unchanged.
+
+\emph{Hodge side.} By~\eqref{eq:hodge-slopes} the polygon has length
+$2(g-1+|\Sinf|) + \sum_P(\dP-1)$. If $|\Sinf|$ counted closed points of
+$X/\Fq$ then base change would change it --- a closed point of degree $d$
+splits into $\gcd(d,m)$ points --- and $\HP$ would \emph{not} be invariant.
+The degree count forces the geometric reading:
+\[
+  2(g-1+|\Sinf|) + \sum_P(\dP - 1) = 2g-2+|\Sinf|+\sum_P \dP
+  = -\chi_c(X, \calF_\rho)
+\]
+by Grothendieck--Ogg--Shafarevich for a rank-$1$ sheaf, and that formula
+sums over \emph{geometric} points. So $|\Sinf|$ is the geometric count and
+the $\dP$ are geometric Swan conductors; $g$ is geometric; and Swan
+conductors are invariant under unramified base change. Every ingredient of
+the slope multiset is unchanged, as is ordinarity of $X$.
+\end{proof}
+
+The nontriviality hypothesis is not vacuous --- $\rho'$ can become trivial
+for a character pulled back from $\Gal(\Fqbar/\Fq)$ --- but it cannot fail
+here, because $\rho$ is wildly ramified at some point of $\Sinf$ and
+ramification is geometric.
+
+\begin{remark}[An extension-free variant, and why it is not a drop-in]
+\label{rem:eqminus1}
+Deleting Steps 2 and 3 of \Cref{lem:belyi} and setting $\eta := g_4 \circ
+g_1 \circ \eta_0$ also works: by Step 1 every point of $\phi^{-1}(0)$
+already has index exactly $q-1$, odd and $>1$ for $q \ge 4$, so $g_4$ alone
+gives a tame Belyi map with $\eta(\Sinf) = \{0\}$ and uniform index $e =
+q-1$ over $1$, with no root-of-unity condition and no auxiliary stage. More
+generally the $e$-power stage exists exactly when $e \mid q-1$, which is
+\emph{simultaneously} the condition for $\mu_e \subset \Z_q$, that is for
+the eigenspace decomposition of~\cite[Definition 6.3]{kramermillerupton2021newton}; at odd $p$ one has $p-1 \mid q-1$
+automatically, which is why $p-1$ is their choice.
+
+This variant is insurance, not a route. It moves $\muP$ to $q-1$, so
+\ref{A1} becomes $\wt(k) = 0$ for $k \le q-1$; and while
+\Cref{thm:closed-form,thm:valuation}, \Cref{lem:tail} and
+\Cref{thm:sharpness} hold for \emph{every} odd $e$, the mod-$6$ case
+analysis of \Cref{thm:weight} is specific to $e = 3$ and would have to be
+redone modulo $2e$ for a field-dependent $e$, once per $q$. That is a
+research task rather than a substitution. We take the base extension
+instead, which \Cref{prop:base-change} makes free.
+\end{remark}

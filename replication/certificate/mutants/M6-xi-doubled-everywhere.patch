@@ -1,0 +1,29 @@
+--- noh_wt_certificate.rs	2026-08-20 22:48:31.261980829 -0400
++++ noh_wt_certificate.rs	2026-08-20 22:48:31.267532389 -0400
+@@ -113,7 +113,7 @@
+     if k % 2 == 0 {
+         let mut num = Rat::int(1);
+         for i in 0..i128::from(m) {
+-            num = num.mul(Rat::new(lam2.n - 4 * i * i * lam2.d, lam2.d));
++            num = num.mul(Rat::new(lam2.n - 16 * i * i * lam2.d, lam2.d));
+         }
+         let mut den = Rat::int(1);
+         for i in 1..=(2 * i128::from(m)) {
+@@ -150,7 +150,7 @@
+         // even: a_{i+1} = a_i (lam^2 - 4 i^2) / ((2i+2)(2i+1))
+         // odd : b_{i+1} = b_i (lam^2 - (2i+1)^2) / ((2i+3)(2i+2))
+         let (sub, p, q) = if even {
+-            (4 * i * i, 2 * i + 2, 2 * i + 1)
++            (16 * i * i, 2 * i + 2, 2 * i + 1)
+         } else {
+             ((2 * i + 1) * (2 * i + 1), 2 * i + 3, 2 * i + 2)
+         };
+@@ -166,7 +166,7 @@
+ fn v2_closed(k: i128, m: u32, e: i128) -> Option<i64> {
+     let mut s = 0i64;
+     for i in 0..i128::from(m) {
+-        let xi = if k % 2 == 0 { 2 * i } else { 2 * i + 1 };
++        let xi = if k % 2 == 0 { 4 * i } else { 2 * i + 1 };
+         let (a, b) = (k - e * xi, k + e * xi);
+         if a == 0 || b == 0 {
+             return None;

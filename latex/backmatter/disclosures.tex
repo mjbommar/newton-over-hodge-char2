@@ -1,0 +1,36 @@
+%% ============================================================
+%% backmatter/disclosures.tex — Data availability and statements
+%%
+%% Purpose      : the back matter a computational-mathematics preprint
+%%                owes its reader — where the certificates, the evidence
+%%                ledger, and the code actually live, plus funding,
+%%                competing interests, and AI-assistance statements. All
+%%                read from generated metadata (paper.yaml disclosure:).
+%% Dependencies : generated/metadata.tex (\PaperDataAvail, \PaperFunding,
+%%                \PaperCompeting, \PaperAIStatement, \ifPaperAIUsed).
+%%
+%% Data availability is load-bearing here rather than decorative: the
+%% paper's claims are machine-checkable only if the artefacts are
+%% reachable, so this section names the ancillary bundle explicitly.
+%% ============================================================
+
+\section*{Data and code availability}
+\addcontentsline{toc}{section}{Data and code availability}
+
+\PaperDataAvail
+
+\section*{Statements}
+\addcontentsline{toc}{section}{Statements}
+
+% style=nextline FIRST: it resets labelwidth, so the explicit labelwidth/
+% labelsep must follow it. Without them enumitem derives labelwidth from
+% leftmargin (0pt) minus labelsep and warns "Negative labelwidth"; the
+% label sits on its own line here, so it needs no reserved width.
+\begin{description}[style=nextline, leftmargin=0pt, labelsep=0pt,
+                    labelwidth=0pt, font=\normalfont\bfseries, itemsep=0.3em]
+  \item[Funding] \PaperFunding.
+  \item[Competing interests] \PaperCompeting.
+  \ifPaperAIUsed
+    \item[AI assistance] \PaperAIStatement
+  \fi
+\end{description}

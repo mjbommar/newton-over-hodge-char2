@@ -1,0 +1,64 @@
+%% ============================================================
+%% frontmatter/titleblock.tex — AMS front matter
+%%
+%% Purpose      : the paper's opening, in amsart's own front-matter
+%%                commands rather than a hand-built title block. The class
+%%                typesets the title, the author names, the abstract, and
+%%                — as small plain footnotes on page one — the 2020
+%%                Mathematics Subject Classification and the key words.
+%%                Author addresses and e-mail addresses are set by amsart
+%%                in the back matter, where a mathematics paper puts them.
+%%
+%% Dependencies : generated/metadata.tex (\PaperTitle, \PaperShortTitle,
+%%                \PaperAuthorAMS, \PaperAbstract, \PaperKeywords,
+%%                \PaperMSC, \PaperDate and the \ifPaper... flags).
+%%
+%% DELIBERATELY GONE (this was the whitepaper title page):
+%%   * the centred sans-serif coloured title block and eso-pic hero image;
+%%   * "Keywords:" / "2020 Mathematics Subject Classification:" as bold
+%%     coloured labels fenced by horizontal rules — amsart's own footnote
+%%     apparatus replaces them;
+%%   * the printed "License: CC BY 4.0" line. arXiv records the licence in
+%%     its own metadata from the submission form; preprints do not print
+%%     it on the page, and doing so read as corporate boilerplate. The
+%%     licence still lives in paper.yaml (venue.license) and is exported
+%%     for the submission form by scripts/export_arxiv_metadata.py.
+%% ============================================================
+
+% ---- Title (short form feeds amsart's running head) -----------------
+\ifPaperHasSubtitle
+  \title[\PaperShortTitle]{\PaperTitle\\ \PaperSubtitle}
+\else
+  \title[\PaperShortTitle]{\PaperTitle}
+\fi
+
+% ---- Authors --------------------------------------------------------
+% \PaperAuthorAMS expands to one \author (plus \address/\email/\thanks)
+% per author, generated from paper.yaml. \AnonMode replaces the lot for
+% double-blind copies.
+\ifdefined\AnonMode
+  \author{}
+\else
+  \PaperAuthorAMS
+\fi
+
+\ifPaperHasSeries
+  \thanks{\PaperSeries}
+\fi
+
+\date{\PaperDate}
+
+% ---- Classification apparatus (amsart typesets these itself) --------
+\ifPaperHasMSC
+  \subjclass[2020]{\PaperMSC}
+\fi
+\ifPaperHasKeywords
+  \keywords{\PaperKeywords}
+\fi
+
+% ---- Abstract must precede \maketitle in the AMS classes ------------
+\begin{abstract}
+  \PaperAbstract
+\end{abstract}
+
+\maketitle

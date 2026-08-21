@@ -1,0 +1,264 @@
+%% ============================================================
+%% sections/05_assembly.tex
+%%
+%% The dictionary between the two source formalisms; the consumption map,
+%% each cited result with its one-line p-uniformity reason; the two source
+%% defects with repairs; and the proof of the main theorem as assembly.
+%% Target: three pages.
+%% ============================================================
+
+\section{Assembly}
+\label{sec:assembly}
+
+\Cref{thm:weight} is stated in the language of~\cite{kramermillerupton2021newton}, and the global argument that carries
+\Cref{thm:main} is~\cite{kramermiller2020abelian}'s. This section closes
+that gap, records what the global argument consumes and why each item is
+$p$-uniform, and assembles the proof.
+
+\subsection{The dictionary}
+\label{sec:dictionary}
+
+Both papers control the same operator on the same kind of module; they write
+it differently. Writing $\nu$ for the $p$-Frobenius of~\cite[\S4.2]{kramermiller2020abelian} --- which is the map
+\S\ref{sec:operator} calls $\sigma$, that paper reserving $\sigma$ for the
+$a$-th iterate --- and $b$ for its weight:
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.38\linewidth}>{\raggedright\arraybackslash}p{0.34\linewidth}>{\raggedright\arraybackslash}p{0.20\linewidth}@{}}
+\toprule
+\cite{kramermiller2020abelian}
+  & \cite{kramermillerupton2021newton} and here & agree? \\
+\midrule
+$\nu(t) = ((t^{p-1}+1)^p-1)^{1/(p-1)}$
+  & the type-$2$ $\sigma$ of \S\ref{sec:operator} & identical \\
+$b(-K) = \lfloor (K-1)/(p-1) \rfloor$
+  & $\wt_{\mathrm{KMU}}(K)$, same formula
+  & identical under $n = -K$ \\
+$K = k+np$, $0 \le k \le p-1$, gain $p^n$
+  & $K = p\ell + r$, $0 \le r < p$, gain $\pi^{\ell/m_P}$
+  & identical \\
+$\Dmod = \prod_n p^{b(n)}t^n\OL$
+  & $\Am$ of~\eqref{eq:growth-module}
+  & same shape; $\Dmod$ coefficientwise \\
+$\Up(\Dmod) \subset \Dmod$
+  & \ref{A5}, and~\ref{A3} in weak form
+  & identical \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The entry that matters is the fourth. The module $\Dmod$ of~\cite[\S4.2]{kramermiller2020abelian} is defined \emph{coefficientwise}, by
+integer exponents, with no radius parameter and no $\pi$ anywhere. Two
+consequences follow, and both are used above. First, a weight that is not a
+Galois-eigenspace regrading --- which~\eqref{eq:the-weight} is not --- is
+native there, whereas~\cite[Definition 6.3]{kramermillerupton2021newton} builds its
+module as an eigenspace sum. Second, the calibration is exact rather than
+conservative: the requirement really is $\dfct(k) \ge 1$ in $\vp$, on the
+nose (\S\ref{sec:admissibility}). Hence \Cref{lem:tail} and
+\Cref{thm:weight} transport verbatim: same operator, same weight function
+under $n \leftrightarrow -K$, same conclusion.
+
+\subsection{What the global argument consumes}
+\label{sec:consumption}
+
+We substitute into~\cite{kramermiller2020abelian} at exactly two places:
+its Lemma~3.1, the geometric input, is replaced by \Cref{lem:belyi}; and its
+\S4.2 with Proposition~4.2, the type-$2$ local estimate, is replaced by
+\Cref{thm:closed-form,thm:valuation,thm:weight} and \Cref{lem:tail} at $e =
+3$ with the weight~\eqref{eq:the-weight}. Everything else is cited. The
+following are the load-bearing items, each with the reason it does not see
+the prime.
+
+\begin{enumerate}[label=\textup{(C\arabic*)},leftmargin=*,itemsep=3pt]
+\item\label{C1} \emph{The truncation and the Riemann--Roch count.} The
+  truncation function of~\cite[\S6]{kramermillerupton2021newton} sets $\muP = e_P$ at
+  type-$2$ points, so the divisor is $D = \eta^*(1)$; by~\eqref{eq:rh},
+  $\deg D = \deg\eta > 2g-2$ and Riemann--Roch gives
+  \begin{equation}
+  \label{eq:N-count}
+    N = h^0(D) = \deg\eta + 1 - g = g - 1 + r_0 + r_1 + r_\infty .
+  \end{equation}
+  The only dependence on $e_P$ is $r_1 = \deg\eta/e_P$, which cancels
+  against $\deg D = e_P\,r_1 = \deg\eta$ identically --- no Riemann--Roch is
+  needed to see the cancellation. So $N$ is unchanged at $e_P = 3$.
+\item\label{C2} \emph{The slope-$0$ count.} The Deuring--Shafarevich
+  formula~\cite{crew1984etale} pins the
+  number of slope-$0$ segments at $N$, and~\cite[Corollary 7.14]{kramermillerupton2021newton} cancels $r_0+r_1+r_\infty -
+  |\Sinf|$ of them, leaving $g-1+|\Sinf|$: exactly the ramification-defined
+  count of~\eqref{eq:hodge-slopes}, \emph{independent of $e_P$}. The target
+  polygon is therefore the Kramer-Miller one and not a weakened variant.
+\item\label{C3} \emph{The slope-$1$ half.} Bounds of the type of~\cite[Corollary 6.8]{kramermillerupton2021newton} give the polygon below slope $1$;
+  \cite[\S7.3]{kramermiller2020abelian} completes it by a degree count ---
+  ``from the Euler--Poincar\'e formula we know $L(\rho,s)$ has degree
+  $2(g-1+m) + \sum(s_{\tau_i}-1)$'' --- which is the cheap and correct thing
+  to quote here. Poincar\'e duality enters~\cite{kramermiller2020abelian} only for endpoint equality.
+\item\label{C4} \emph{The functional analysis.} The Riemann--Roch step of~\cite[Proposition 7.2]{kramermiller2020abelian} is carried out on the
+  \emph{unweighted} space by reduction modulo $\mathfrak{m}$, and the weight
+  does not appear in it at all. The weight enters only through the
+  \emph{diagonal} change of basis of their Proposition~7.4, under which
+  every principal minor --- hence the whole Fredholm series --- is
+  invariant, for any weight, provided both operators are nuclear. Nuclearity
+  is $\dfct(k)\to\infty$, which is \Cref{thm:weight}.
+\item\label{C5} \emph{The one strict inequality.} The single strict
+  inequality in the perturbation machinery,
+  \cite[Definition 7.3(1)]{kramermillerupton2021newton}, is supplied by the margin
+  $[kp - k(p-1)]/\deltaP = k/\deltaP$, which is independent of $p$. The
+  factor $p-1$ that vanishes at $p = 2$ is not the source of that
+  strictness. Likewise the gain $\pi_s^{n(p-1)}$ normalises to slope $n/s$
+  at every $p$ because $\vp(\pi) = 1/(p-1)$, so the $p-1$ cancels exactly.
+  The only additive tightness anywhere in the local estimate is $\dfct(6) =
+  1$, exactly at the threshold and exactly sufficient.
+\item\label{C6} \emph{The wild points.} No step of the analysis at points of
+  $\Sinf$ carries a parity hypothesis; the splitting function is a product
+  of rank-one Artin--Hasse factors with no cross
+  terms~\cite[Proposition 5.5]{kramermiller2020abelian}, and
+  $\Omega_\rho = 0$ automatically for $\rho$ of $p$-power order. The decay
+  rate of that splitting function is at the theoretical ceiling at every
+  prime~\cite[Theorems 12.6.4 and 19.4.1]{kedlaya2010padic},
+  \cite[Proposition 2.12]{pulita2007rank}, so there is no $p = 2$ loss to
+  recover there and none to lose.
+\end{enumerate}
+
+Not re-verified here, and cited as their users cite them: the
+Deuring--Shafarevich formula~\cite{crew1984etale}, the
+local-to-global extension theorem of Katz and
+Gabber~\cite{katz1986localtoglobal}, Monsky's trace
+formula~\cite{monsky1971formal,monskywashnitzer1968formal},
+Elkik~\cite{elkik1973solutions}, the functional analysis
+of~\cite[\S6]{kramermiller2020abelian}, and the internal proofs
+of~\cite{kedlayalittwitaszek2020tame} and~\cite{sugiyamayasuda2020belyi}.
+
+\subsection{Why \texorpdfstring{\Cref{thm:main}}{the main theorem} carries no truncation}
+\label{sec:no-cap}
+
+\Cref{thm:contact} is capped and \Cref{thm:main} is not, and the reason is
+\ref{C4} together with the fourth row of the dictionary.
+
+The cap on \Cref{thm:contact} originates in the exact sequence of~\cite[\S6.2]{kramermillerupton2021newton}. Making that sequence available for the
+repaired weight requires the growth parameter $m_{e,P} \ge 1$, hence $e \le
+1$ in the normalisation $m_{e,P} = 1/e$, which is what
+\S\ref{sec:contact-cap} converts into $q$-adic $r \le 2^{1-n}$. The
+formalism that constraint lives in is the tuple $m_e$ and the basis
+$B^{m_e}$.
+
+\emph{\cite{kramermiller2020abelian} has no such formalism at the type-$2$
+points.} Its local growth module is $\Dmod = \prod_n p^{b(n)}t^n\OL$,
+coefficientwise, with integer exponents and no radius parameter; the
+Riemann--Roch step is weight-free; the weight enters only through a diagonal
+similarity. There is no free parameter for the exact sequence to constrain,
+and the requirement consumed in~\cite[\S7.2, case (II)]{kramermiller2020abelian}
+is the absolute statement $\dfct(k)\ge 1$ in $\vp$. So the exactness
+statement does not arise on this route, and neither does the cap.
+
+\subsection{Two defects in the sources, repaired}
+\label{sec:defects}
+
+Neither is a $p = 2$ obstruction; both are $p$-uniform, and both are vacuous
+for the characters of \Cref{thm:main}, for which $\varepsilon_Q = 0$. We
+record them because they are load-bearing for~\cite{kramermiller2020abelian}'s general statement.
+
+\begin{proposition}
+\label{prop:defect-bound}
+The bound $-q(e,j) \le a(p-1)$ asserted in
+\textup{\cite[\S4.1.1]{kramermiller2020abelian}} is false, at every $p$;
+witnesses are $(p,a,\varepsilon,j) = (2,3,3,1)$, giving $-q = 4 > 3$, and
+$(3,2,5,1)$, giving $-q = 5 > 4$. The weaker bound $-q \le ap$ also fails
+--- $(2,4,7,3)$ gives $-q = 9 > 8$ --- and neither can be repaired by
+shrinking $s$, both terms scaling as $1/s$. The correct bound is
+\[
+  -q(e,j) \ \le \ (p-1)\,\frac{a(a+1)}{2},
+\]
+which equals $a(p-1)$ only for $a = 1$.
+\end{proposition}
+
+\begin{proposition}
+\label{prop:defect-feasible}
+The choice of $s_Q$ required by
+\textup{\cite[eq.\ (18)]{kramermiller2020abelian}}, namely an $s_Q$ with
+$1/s_Q - \omega_Q/(as_Q(p-1)) \ge 1$, is feasible, though the source does
+not argue it. Indeed $\varepsilon_Q$ is the unique integer between $0$ and
+$q-2$ with the given digit sum, and the only $\varepsilon \le p^a-1$ with
+digit sum $a(p-1)$ is $p^a-1 = q-1$, which is excluded; so $\omega_Q \le
+a(p-1)-1$ and $1 - \omega_Q/(a(p-1)) \ge 1/(a(p-1)) > 0$, whence any
+sufficiently small $s_Q$ works. At $p = 2$ this reads $\omega_Q \le a-1$.
+\end{proposition}
+
+Both were checked exhaustively for $p \in \{2,3,5\}$ and $a \le 6$, over all
+$\varepsilon$; the sweeps are in the replication package.
+
+Two smaller textual points, recorded so that a reader comparing displays
+does not stumble. \cite[Definition 6.3]{kramermillerupton2021newton} defines
+its module with a \emph{strict} inequality $\vpi(b_k) > k/m_P$ and then
+asserts that $\{\pi^{\wt(k)/m_P}t_P^{-k}\}$ is a formal basis of it, which
+with $>$ is false, the basis elements sitting exactly on the boundary; their
+own \S2.1 uses $\ge$, and $\ge$ is the repair. Nothing downstream sees the
+difference, every estimate here being coefficientwise, and the point does
+not arise on the~\cite{kramermiller2020abelian} side at all. Separately, the
+truncation function of~\cite[eq.\ (33)]{kramermiller2020abelian} reads
+$\mu(Q) = p$ at type-$2$ points where~\cite[eq.\
+(11)]{kramermillerupton2021newton} reads $p-1$: the two denote the
+\emph{same} truncation, one counting the first kept index and the other the
+last dropped one, and with $e_P = 3$ both read ``drop poles of order $\le
+3$'', which is~\ref{A1}.
+
+\subsection{Proof of the main theorem}
+\label{sec:proof-main}
+
+\begin{proof}[Proof of \Cref{thm:main}]
+Let $q = 2^a$, $X/\Fq$ smooth affine, and $\rho$ nontrivial of order $2^n$.
+By \Cref{prop:base-change} we may replace $\Fq$ by $\F_{q^2}$ if $a$ is odd,
+so assume $3 \mid q-1$; the character remains nontrivial because it is
+wildly ramified at some point of $\Sinf$ and ramification is geometric, and
+neither polygon changes.
+
+By \Cref{lem:belyi} with $e = 3$ --- available by
+\Cref{prop:three-divides} --- there is a tame Belyi map $\eta : X \to
+\PP^1_{\Fq}$ with $\eta(\Sinf) = \{0\}$ and uniform ramification index $3$
+over $1$, satisfying~\eqref{eq:rh}. This is the input~\cite[Lemma 3.1]{kramermiller2020abelian} supplies at $p \ge 3$; by
+\Cref{rem:mixed-fibre} the mixed fibre over $0$ is admissible, and by
+\Cref{rem:second-branch} the point over $\infty$ creates no further type-$2$
+point.
+
+At each $P$ with $\eta(P) = 1$ the local situation is that of
+\S\ref{sec:operator} with $e = 3$, and by \Cref{thm:weight} the weight
+\eqref{eq:the-weight} satisfies~\ref{A1}--\ref{A5} with $\dfct(k) \ge 1$ for
+every $k > 3$ and $\dfct(k) \to \infty$. By \S\ref{sec:dictionary} this is
+precisely the hypothesis that~\cite[\S4.2 and Proposition 4.2]{kramermiller2020abelian} supply at $p \ge
+3$, in that paper's own coefficientwise module and with its own
+normalisation, the calibration being exact there.
+
+The remaining hypotheses of~\cite{kramermiller2020abelian} are $p$-uniform
+by~\ref{C1}--\ref{C6}: the truncation and the count~\eqref{eq:N-count} are
+unchanged at $e_P = 3$; the slope-$0$ multiplicity reduces to $g-1+|\Sinf|$
+independently of $e_P$; the slope-$1$ half comes from the degree count; the
+Fredholm series is invariant under the diagonal change of basis for any
+weight, and is nuclear because $\dfct(k)\to\infty$; the one strict
+inequality has a $p$-independent margin; and the analysis at the wild points
+carries no parity hypothesis, with $\Omega_\rho = 0$ automatic for $\rho$ of
+$2$-power order. Running~\cite{kramermiller2020abelian} with these two
+substitutions therefore yields $\NP_q(\rho) \ge \HP_q(\rho)$ with the
+polygon~\eqref{eq:hodge-slopes}. By \S\ref{sec:no-cap} the argument carries
+no truncation parameter, so the conclusion is the full polygon and holds for
+every $n$.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:contact}]
+The same two substitutions are made in~\cite{kramermillerupton2021newton} instead:
+its Proposition~4.3 by \Cref{lem:belyi}, and its Definition~6.3, Lemma~6.2,
+Proposition~6.4 and Remark~6.5 by \Cref{thm:weight}. Its \S\S2--3, 4.2--4.4,
+5, the wild part of 6.1, and 7.1--7.4 are $p$-uniform, and its Lemma~7.11,
+the unique consumer of $\dfct(k)\ge 1$, is unchanged given
+\Cref{thm:weight}: with $m_{e,P} = 1/e$ the columns at $\eta(P) = 1$ have
+slope $\dfct(k)e$, so the requirement is $\dfct(k)\ge 1$
+non-strictly --- correctly so, since $I^{<r}$ is defined with a strict
+inequality and a column of slope exactly $r$ already lies outside it. The
+range is then as computed in \S\ref{sec:contact-cap}: the exact sequence of~\cite[\S6.2]{kramermillerupton2021newton} requires $m_{e,P}\ge 1$, giving $\pi$-adic
+$r \le 1$, hence $q$-adic $r \le 2^{1-n}$ since $\vpi(2) = 2^{n-1}$.
+\end{proof}
+
+We flag once more what \Cref{thm:contact} rests on that \Cref{thm:main} does
+not. The exact sequence of~\cite[\S6.2]{kramermillerupton2021newton} is asserted
+there without proof, at every $p$ and for their own weight; only the
+$\Adag$ version is proved. It is a pre-existing gap in the source rather
+than a cost of the repair (\Cref{rem:not-a-ring}), and by
+\S\ref{sec:no-cap} it does not arise on the route of \Cref{thm:main} at all.

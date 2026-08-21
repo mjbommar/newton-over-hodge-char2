@@ -1,0 +1,97 @@
+# Single source of truth for paper metadata.
+#
+# Nothing in latex/ is generated from this file (this repo has no metadata
+# generator; the LaTeX carries its own title block). What paper.yaml IS:
+#   * the canonical text of title / abstract / keywords / classification,
+#   * what scripts/make_arxiv.py reads for the engine and 00README.json,
+#   * what scripts/doctor.py audits the toolchain against, and
+#   * what ARXIV-SUBMISSION.md must agree with (doctor checks the title).
+# If the LaTeX title block and this file disagree, this file is right.
+paper:
+  title: Newton over Hodge at $p = 2$ for $2$-power-order characters on arbitrary smooth affine curves
+  subtitle: ''
+  short_title: Newton over Hodge at p = 2
+  # LaTeX-free mirror for PDF metadata and for arXiv's plain-text fields
+  # (hyperref cannot typeset math in a PDF string; without this the /Title
+  # that arXiv and indexers surface comes out with the math deleted).
+  title_plain: Newton over Hodge at p = 2 for 2-power-order characters on arbitrary smooth affine curves
+  date: ''
+authors:
+- name: Michael Bommarito
+  email: michael.bommarito@gmail.com
+  alt_email: mike@273ventures.com
+  corresponding: true
+abstract: 'Newton-over-Hodge lower bounds for Artin--Schreier--Witt $L$-functions on arbitrary smooth affine curves are
+  known only for odd $p$: at $p = 2$ the Kramer-Miller--Upton local estimate degrades to $a(k) = \lfloor
+  (k-1)/3 \rfloor$, which they call too low for applications to the global setting. We show that this is an
+  artifact of one weight choice, not of the prime. The $3$ is the tame ramification index of an auxiliary
+  Belyi map, and the weight $a(k) = \lfloor (k-1)/3 \rfloor + (k \bmod 2)$ is admissible for every $k$, with
+  defect $d(k) \ge \max(1, k/6)$; the rate $1/6$ is exactly optimal, since $k = 2e$ is a self-loop of the
+  local operator with coefficient $2$ for every weight. Adding a characteristic-$2$ tame Belyi map of uniform
+  index $3$ over the point $1$, we obtain $\mathrm{NP}_q(L(\rho,s)) \ge \mathrm{HP}_q(\rho)$ as full polygons,
+  with no truncation, for every nontrivial character of $2$-power order on a smooth affine curve over
+  $\mathbf{F}_{2^a}$. We also give the local-to-global contact criterion at $p = 2$ on an initial segment,
+  prove that restriction structural, and record corrections to the literature.'
+abstract_plain: 'Newton-over-Hodge lower bounds for Artin-Schreier-Witt L-functions on arbitrary smooth affine curves are
+  known only for odd p: at p = 2 the Kramer-Miller-Upton local estimate degrades to a(k) = floor((k-1)/3),
+  which they call too low for applications to the global setting. We show that this is an artifact of one
+  weight choice, not of the prime. The 3 is the tame ramification index of an auxiliary Belyi map, and the
+  weight a(k) = floor((k-1)/3) + (k mod 2) is admissible for every k, with defect d(k) >= max(1, k/6); the
+  rate 1/6 is exactly optimal, since k = 2e is a self-loop of the local operator with coefficient 2 for every
+  weight. Adding a characteristic-2 tame Belyi map of uniform index 3 over the point 1, we obtain
+  NP_q(L(rho,s)) >= HP_q(rho) as full polygons, with no truncation, for every nontrivial character of 2-power
+  order on a smooth affine curve over F_{2^a}. We also give the local-to-global contact criterion at p = 2 on
+  an initial segment, prove that restriction structural, and record corrections to the literature.'
+classification:
+  keywords:
+  - Newton polygon
+  - Hodge polygon
+  - Artin-Schreier-Witt covers
+  - exponential sums
+  - characteristic 2
+  - L-functions
+  # MSC 2020 (msc2020.org). This is a number-theory preprint; MSC is the
+  # scheme arXiv's submission form asks for. There is deliberately NO JEL
+  # block -- JEL is the economics/finance scheme and has no place here.
+  msc_primary: 11T23        # Exponential sums (finite fields and commutative rings)
+  msc_secondary:
+  - 11G20   # Curves over finite and local fields
+  - 11S15   # Ramification and extensions of local fields
+  - 14F30   # p-adic cohomology, crystalline cohomology
+  - 14G15   # Finite ground fields in algebraic geometry
+  arxiv_primary: math.NT
+  arxiv_cross:
+  - math.AG
+venue:
+  target: arxiv
+  series: ''
+  license: cc-by-4.0
+typography:
+  engine: pdflatex
+  font_profile: lmodern
+  base_size: 11
+  paper_size: letter
+  linespacing: single
+  twocolumn: false
+citations:
+  system: natbib
+  style: numeric
+  bibliography_title: References
+  sort: true
+disclosure:
+  ai_used: true
+  ai_statement: 'The mathematics in this paper was produced by a multi-agent AI pipeline with an adversarial
+    verification stage: proving agents wrote the arguments, an independent auditing agent re-derived them
+    from the definitions and attempted to refute them, and every assertion carries the label the audit
+    left it with. The complete audit trail, including the results that were refuted and withdrawn, is in
+    research-log/ in the accompanying repository. The author directed the program, is solely responsible
+    for all content, and does not represent the machine-checked components as a substitute for human
+    referee review.'
+  funding: none to declare
+  competing_interests: none to declare
+  data_availability: 'The self-checking verification programs for the local weight theory (the operator
+    matrix and the Theorem 1-4 certificate), the from-scratch cross-checks, and the standalone verifier
+    scripts accompany this paper in the repository https://github.com/mjbommar/newton-over-hodge-char2
+    under replication/, together with the full research log. Each program asserts its findings and exits
+    nonzero on any failure, so its exit status depends on what the run found rather than on the run
+    completing. No external solver or computer-algebra system is required.'

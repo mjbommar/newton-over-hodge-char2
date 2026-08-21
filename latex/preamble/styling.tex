@@ -1,0 +1,100 @@
+%% ============================================================
+%% preamble/styling.tex — theorem environments, float polish, page breaking
+%%
+%% Purpose      : the small amount of styling an amsart paper still needs.
+%%                amsart itself owns the sectioning, the running heads, the
+%%                folio, and the title block, so this file no longer
+%%                restyles any of them.
+%% Dependencies : amsthm (packages.tex), generated/metadata.tex.
+%%
+%% REMOVED ON PURPOSE (was the whitepaper skin):
+%%   * titlesec \titleformat on \section/\subsection/\subsubsection —
+%%     coloured sans-serif headings with a rule under each \section.
+%%     amsart's centred small-caps headings are the AMS convention.
+%%   * fancyhdr \pagestyle{fancy} running heads and folios in colour —
+%%     amsart's own headings page style is what a math preprint uses.
+%%   * setspace — mathematics is set single-spaced; the option only ever
+%%     existed for double-spaced law-review submissions.
+%%   * coloured caption labels.
+%% ============================================================
+
+\makeatletter
+
+% ----------------------------------------------------------------------
+% ISO date for the draft banner.
+% ----------------------------------------------------------------------
+\newcommand{\pt@isodate}{\the\year-\two@digits\month-\two@digits\day}
+
+% ----------------------------------------------------------------------
+% Build modes. \DraftMode (make draft) adds line numbers for circulating
+% comment copies. It is OFF in every shipped build — the submission PDF has
+% no line numbers, no banner, and no watermark. \AnonMode is read in
+% frontmatter/titleblock.
+% ----------------------------------------------------------------------
+\ifdefined\DraftMode
+  \usepackage[switch]{lineno}
+  \linenumbers
+\fi
+
+% ======================================================================
+% Theorem environments live in preamble/theorems.tex, NOT here.
+%
+% They must be declared AFTER cleveref, which is loaded last (see
+% preamble/main.tex). cleveref patches \newtheorem at load time to record
+% each environment's own type; an environment declared BEFORE cleveref is
+% only known to it by its COUNTER, and every environment in this paper
+% shares the `theorem' counter, so \Cref{lem:support} came out as
+% "Theorem 2.1" and \Cref{rem:not-a-ring} as "Theorem 2.6". Measured, not
+% theorised: that is what the first build of this paper printed.
+% ======================================================================
+
+% ======================================================================
+% \paragraph — bold run-in head.
+%
+% amsart styles \paragraph as bare \normalfont (amsart.cls: "\def\paragraph
+% {\@startsection{paragraph}{4}\z@\z@{-\fontdimen2\font}\normalfont}"), so a
+% \paragraph{...} lead-in is typographically INVISIBLE — it reads as an
+% ordinary sentence. Section 3's "Route A:"/"Route B:" heads need to read as
+% heads, so we keep amsart's geometry (run-in, negative after-skip) and only
+% add weight, matching amsart's own \subsection style. Prose is untouched.
+% ======================================================================
+\def\paragraph{\@startsection{paragraph}{4}%
+  \z@{1.5ex\@plus.5ex\@minus.2ex}{-\fontdimen2\font}%
+  {\normalfont\bfseries}}
+
+% ======================================================================
+% amsart back-matter address block.
+%
+% amsart hangs the separating \addvspace\bigskipamount off \address (see
+% \@setaddresses in amsart.cls, where \def\author is what emits the
+% space). An author with an \email but NO \address therefore gets no
+% leading space at all, and the "Email address: ..." line renders flush
+% against the last bibliography entry — it reads as part of reference [1].
+% Restore the space at the front of the block instead.
+% ======================================================================
+\pretocmd{\@setaddresses}{\addvspace\bigskipamount}{}{%
+  \PackageWarning{paper-template}{could not patch \string\@setaddresses}}
+
+% ======================================================================
+% Bibliography spacing (natbib only).
+%
+% plainnat separates entries by \itemsep, which on a 26-entry reference list
+% costs most of a page for nothing. AMS journals set reference lists tight;
+% \bibsep is natbib's own hook for it and changes no other spacing.
+% ======================================================================
+\ifPaperBibNatbib
+  \setlength{\bibsep}{0pt plus 0.3ex}
+\fi
+
+% ======================================================================
+% Page-breaking policy.
+% ======================================================================
+\allowdisplaybreaks       % long displays may split across a page
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+\tolerance=1500
+\emergencystretch=1.5em
+
+\makeatother

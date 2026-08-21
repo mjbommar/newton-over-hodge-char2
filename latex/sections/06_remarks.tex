@@ -1,0 +1,70 @@
+%% ============================================================
+%% sections/06_remarks.tex
+%%
+%% Open problems and the pointer to the replication package.
+%% Target: one page.
+%% ============================================================
+
+\section{Open problems}
+\label{sec:remarks}
+
+\subsection*{The full contact theory}
+
+\Cref{thm:contact} covers $q$-adic $r \le 2^{1-n}$, and by
+\Cref{cor:cap-universal} no choice of auxiliary tame index enlarges that
+range. The two routes that would --- proving the exact sequence of~\cite[\S6.2]{kramermillerupton2021newton} outright, or re-running its \S6.2 and \S7
+in the coefficientwise formulation of~\cite{kramermiller2020abelian} ---
+are set out in \Cref{rem:open-contact}, together with a third that would
+relax the cap to $r \le 1/2$ uniformly in $n$ if the rest of the argument
+survives a change of growth parameter. We emphasise that the first is a gap
+in the published source at every $p$, not something introduced here: only
+the $\Adag$ version of that sequence is proved there, and by
+\Cref{rem:not-a-ring} no admissible weight makes the relevant module a ring
+at any prime.
+
+\subsection*{Deflation past the universal cap}
+
+\Cref{thm:sharpness} says the obstruction to a better rate is one explicit
+near-diagonal entry, of valuation exactly $1$, contributed by the self-loop
+at $k = 2e$. That suggests stripping its span --- and, if necessary, its
+finite forward orbit --- as a finite-rank correction, factoring or bounding
+$\det(1 - Ms)$ as a small explicit block times a deflated determinant, and
+running the weight argument on the complement, where increments $\dfct(k)
+\ge 2$ become available. The self-loop factor's contribution is computable
+in closed form from \Cref{thm:closed-form}, and it is where the polygon's
+own slope-$\tfrac12$-type segment should sit. We state this as a proposal;
+we have neither a proof nor a computation behind it.
+
+\subsection*{The weight theory at general odd \texorpdfstring{$e$}{e}}
+
+\Cref{thm:closed-form,thm:valuation}, \Cref{lem:tail} and
+\Cref{thm:sharpness} hold for every odd $e$, with the sharpness threshold
+$\RateGeneral$. Only the mod-$6$ case analysis of \Cref{thm:weight} is
+specific to $e = 3$; redoing it modulo $2e$ would make the extension-free
+variant of \Cref{rem:eqminus1}, with $e = q-1$, usable directly, though
+\Cref{prop:base-change} already makes the $3 \mid q-1$ condition free. A
+related and genuinely open question: whether a higher-degree auxiliary map
+could produce $e_P = 3$ over a field with $3 \nmid q-1$.
+
+\subsection*{Characters of general order}
+
+\Cref{thm:main} is stated for $\rho$ of $2$-power order, which is where
+$\Omega_\rho = 0$ and the tame part is absent. Extending it to a general
+finite character in characteristic $2$ means carrying the tame ramification
+data of~\cite[\S4.1]{kramermiller2020abelian} through, and that is where
+\Cref{prop:defect-bound,prop:defect-feasible} become load-bearing rather
+than vacuous. We have repaired both statements but not pursued the
+extension.
+
+\subsection*{Replication}
+
+Every computational claim in this paper is backed by a program in the
+replication package, listed in the data-availability statement below. Each
+asserts its findings and exits nonzero on any failure. The package also
+carries the research log: the source extractions, the adversarial audit that
+refuted or downgraded several intermediate claims, and an error ledger. A
+reader who wants to attack this paper will find the highest-yield targets
+named there --- and the first of them is not any theorem above, but the
+non-load-bearing rows of the $p$-uniformity survey summarised in
+\S\ref{sec:consumption}, which have been read once rather than
+re-derived.

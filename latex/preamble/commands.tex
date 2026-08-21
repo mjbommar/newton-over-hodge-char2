@@ -1,0 +1,219 @@
+%% ============================================================
+%% preamble/commands.tex — the paper's mathematical vocabulary
+%%
+%% Purpose      : every macro the sections may use. Sections define no
+%%                macros of their own.
+%% Dependencies : etoolbox, amsmath/amssymb/mathtools (packages.tex).
+%%
+%% NOTATION CONTRACT.
+%% This paper repairs two named gaps inside an existing framework, so a
+%% referee should be able to read a display here against the corresponding
+%% display in the source papers without translating. The macro names and
+%% the rendered symbols below are therefore taken from the arXiv LaTeX
+%% sources of
+%%
+%%   [KMU-I] Kramer-Miller--Upton, arXiv:2110.08656,
+%%   [KM-ab] Kramer-Miller,        arXiv:2006.04936,
+%%   [KM-exp] Kramer-Miller,       arXiv:1909.06905,
+%%
+%% and NOT chosen afresh. Where the three sources disagree with each other
+%% the divergence is recorded at the macro, together with which convention
+%% this paper follows and why.
+%%
+%% MONOCHROME CONTRACT: every macro here typesets in black (colors.tex).
+%% ============================================================
+
+\usepackage{xspace}
+
+% ======================================================================
+% Number systems and fields.
+% KMU-I/KM-ab/KM-exp all define \F, \Z, \Q, \C, \N, \PP as \mathbb{...};
+% \PP (not \P, which is LaTeX's pilcrow) is their macro for projective
+% space. Kept verbatim so a pasted display compiles either way.
+% ======================================================================
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Fq}{\F_q}
+\newcommand{\Fqbar}{\overline{\F}_q}
+
+% Script objects. The sources use \calA ... \calZ throughout; only the
+% ones this paper needs are defined.
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calD}{\mathcal{D}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calR}{\mathcal{R}}
+\newcommand{\calS}{\mathcal{S}}
+
+% ======================================================================
+% Operators.
+%
+% \NP and \HP are KMU-I's own \DeclareMathOperator names, and this paper
+% writes them with the SAME subscript convention: the base of the
+% normalisation rides on the operator, \NP_q(\rho) and \HP_q(\rho), never
+% on the argument. KMU-I also carries \cHP (a "contact" Hodge polygon);
+% this paper does not use it.
+%
+% ARGUMENT CONVENTION, where the sources differ. KMU-I and KM-ab both
+% write \NP_q(\rho) for the polygon of L(\rho,s) --- the character, not the
+% L-function, is the argument --- while Liu--Wan and Zhu write NP_T(f) and
+% NP(f) with the defining datum inside. We follow KMU-I/KM-ab, and write
+% L(\rho,s) explicitly only where the L-function itself is the subject.
+% ======================================================================
+% ORDER RELATION. All three sources write "lies on or above" as \succeq,
+% on polygons and on slope multisets alike; so does this paper. A bare \ge
+% between two polygons would be this paper's invention.
+\DeclareMathOperator{\NP}{NP}
+\DeclareMathOperator{\HP}{HP}
+\DeclareMathOperator{\Swan}{Swan}
+\DeclareMathOperator{\Branch}{Branch}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Frob}{Frob}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\newcommand{\digitsum}{s_2}
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\ext}{\mathrm{ext}}       % KMU-I's \ext, as in \rho_P^\ext
+\newcommand{\con}{\mathrm{con}}       % KM-ab's O_R^con
+
+% ======================================================================
+% The curve, the character, the ramification data.
+%
+% \Xbar is KM-ab's smooth compactification of X; S = \Xbar \setminus X is
+% the set of points at infinity, taken GEOMETRICALLY (Section 5 shows the
+% degree count forces that reading).
+%
+% SWAN CONDUCTOR -- the three sources disagree on the SYMBOL, so this is
+% where a referee's eye will snag. [KMU-I] writes d_P, indexed by P in S,
+% with delta_P = d_P/p^{n-1} (NOT /(p-1): the (p-1) appears only in the
+% pi-adic printing of the local Hodge polygon, whose slopes are
+% k(p-1)/delta_P where the q-adic printing has k/d_P). [KM-ab] writes s_Q
+% and has no delta at all, bundling ramification into a datum
+% (s_Q, e_Q, eps_Q, omega_Q). [KM-exp] writes d_i, indexed by i, as a pole
+% order. We follow [KMU-I]: d_P and delta_P, because the Hodge polygon we
+% prove a bound for is the one [KMU-I] Sec. 1.2 states in the d_P form, and
+% because the pi_q-adic / q-adic conversion in Sec. 3 turns on
+% v_pi(p) = d_P(p-1)/delta_P.
+% ======================================================================
+\newcommand{\Xbar}{\overline{X}}
+\newcommand{\Sinf}{S}
+\newcommand{\rhoP}{\rho_P^{\ext}}
+\newcommand{\dP}{d_P}
+\newcommand{\deltaP}{\delta_P}
+
+% ======================================================================
+% The p-adic side.
+%
+% \piq is KMU-I's \pi_q = \pi^{v_p(q)}; the two valuations v_\pi and v_q it
+% induces differ by that factor, and every truncation parameter in the
+% contact theory is stated in one of them. This paper writes v_\pi, v_q and
+% v_p as \vpi, \vq, \vp and NEVER abbreviates which is meant.
+% ======================================================================
+\newcommand{\piq}{\pi_q}
+\newcommand{\vpi}{v_{\pi}}
+\newcommand{\vq}{v_q}
+\newcommand{\vp}{v_p}
+\newcommand{\vtwo}{v_2}
+\newcommand{\Rq}{R_q}
+\newcommand{\OL}{\calO_L}
+
+% ======================================================================
+% The type-2 local objects.
+%
+% \Up is KMU-I Definition 4.9's operator (1/p)\sigma^{-1}\circ
+% \Tr_{E/\sigma E}; at p = 2 we write \Utwo. KM-ab calls the same map U_p
+% and its Frobenius \nu rather than \sigma (its Section 4.2); the
+% dictionary is in Section 5.
+%
+% \Adag is A^\dagger; \Am is the weighted growth module A^{m,*}_{\pi,P};
+% \Dmod is KM-ab's coefficientwise D = \prod_n p^{b(n)} t^n \OL, which is
+% the module this paper actually works in.
+% ======================================================================
+% FROBENIUS LETTERS -- read this before editing any display in Sec. 2 or 5.
+% In [KMU-I], \sigma is the p-Frobenius and the q-Frobenius is its iterate.
+% In [KM-ab] and [KM-exp], \nu is the p-Frobenius and \sigma = \nu^a is the
+% q-FROBENIUS. So the same letter names different maps in the two papers a
+% display may be compared against. This paper uses [KMU-I]'s convention
+% (\sigma = p-Frobenius) throughout Sec. 2, states that it is doing so at
+% the point of use, and writes \nu explicitly in Sec. 5's dictionary, which
+% is the only place [KM-ab]'s formalism is quoted.
+\newcommand{\Up}{U_p}
+\newcommand{\Utwo}{U_2}
+\newcommand{\Adag}{A^{\dagger}}
+%
+% THREE THINGS CALLED m, KEPT APART BY SHAPE. [KMU-I]'s growth radius is a
+% TUPLE and is set in bold, \mathbf{m} = (m_P); [KM-ab]'s \mathbf{m} is a
+% SCALAR COUNT (the number of ramified points), which is why we never use a
+% bold m for a count and write |S| instead, as [KMU-I] does; and the tail
+% index of the operator's support in Sec. 2 is a plain italic m. The bold
+% face is load-bearing, not decoration.
+\newcommand{\Am}{\calA^{\mathbf{m},*}_{\pi,P}}
+\newcommand{\Amt}{\widetilde{\calA}^{\mathbf{m},*}_{\pi}}
+% [KM-ab] Sec. 4.2's coefficientwise local module at a type-2 point; it is
+% \mathcal{D} there (a glossary symbol), and it is the module in which this
+% paper's weight actually lives.
+\newcommand{\Dmod}{\calD}
+\newcommand{\Edag}{\calE^{\dagger}}
+% [KM-ab]'s semi-local objects, used only in Sec. 5.
+\newcommand{\Ocon}{\calO_{\calR}^{\con}}
+
+% The weight, the support map, the defect. \wt is the admissible weight
+% a(k); \jm is the minimal support index j'(k); \dfct is the defect d(k).
+% These are the three functions the whole local half is about, so they get
+% names rather than being spelled out at each use.
+\newcommand{\wt}{a}
+\newcommand{\jm}{j'}
+\newcommand{\dfct}{d}
+\newcommand{\muP}{\mu(P)}
+
+% ======================================================================
+% Inline semantics.
+% ======================================================================
+\newcommand{\term}[1]{\emph{#1}}
+\newcommand{\keyterm}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Block quotes sit a touch smaller than body copy. This paper quotes its
+% sources verbatim more than most, because the p >= 3 hypothesis and the
+% obstruction to removing it are both stated by the authors in words, and
+% a paraphrase would be the thing under dispute.
+\AtBeginEnvironment{quotation}{\small}
+
+% ======================================================================
+% The paper's numbers — one source of truth.
+%
+% Every figure quoted in the text comes from the self-checking programs in
+% the replication package. Update HERE only; sections never hard-code a
+% number. The comment on each macro names what produced it.
+% ======================================================================
+
+% --- the repaired weight and its rate ---------------------------------
+\newcommand{\RateGamma}{1/6}              % exact optimal rate (Theorem, sharpness)
+\newcommand{\RateGeneral}{1/(2e)}         % same at general odd tame index e
+\newcommand{\SelfLoopCoeff}{2}            % c_{2e,2e}, independent of e
+\newcommand{\SelfLoopCoeffTwo}{8}         % c_{4e,4e}, independent of e
+
+% --- the exact-rational sweeps (replication: closed-form vs series solve)
+\newcommand{\SweepPairs}{355}             % (k,m) pairs, series solve vs closed form
+\newcommand{\SweepValK}{60}               % valuation identity checked to k <= 60
+\newcommand{\SweepTailK}{600}             % tail estimate checked to k <= 600
+\newcommand{\SweepTailM}{80}              % ... and m <= 80
+\newcommand{\SweepTightPairs}{150}        % tight pairs found, all k = 2 mod 4, m = 1
+\newcommand{\SweepAdmK}{400}              % admissibility swept to k <= 400
+\newcommand{\SweepAdmM}{259}              % ... full support m <= 259
+\newcommand{\SweepDefectHundred}{17}      % d(100)
+\newcommand{\SweepDefectTwoHundred}{33}   % d(200)
+\newcommand{\SweepDefectFourHundred}{67}  % d(400)
